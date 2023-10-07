@@ -1,0 +1,48 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1101,5): warning MSB8027: Two or more files with the name of editor_plugin.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are godot-cpp\gen\src\classes\editor_plugin.cpp, godot-cpp\src\classes\editor_plugin.cpp.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1101,5): warning MSB8027: Two or more files with the name of object.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are godot-cpp\gen\src\classes\object.cpp, godot-cpp\src\core\object.cpp.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1101,5): warning MSB8027: Two or more files with the name of register_types.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are godot-cpp\test\src\register_types.cpp, src\register_types.cpp.
+  accept_dialog.cpp
+  aes_context.cpp
+  animatable_body2d.cpp
+  animatable_body3d.cpp
+  animated_sprite2d.cpp
+  animated_sprite3d.cpp
+  animated_texture.cpp
+  animation.cpp
+  animation_library.cpp
+  animation_node.cpp
+  animation_node_add2.cpp
+  animation_node_add3.cpp
+  animation_node_animation.cpp
+  animation_node_blend2.cpp
+  animation_node_blend3.cpp
+  animation_node_blend_space1_d.cpp
+  animation_node_blend_space2d.cpp
+  animation_node_blend_tree.cpp
+  animation_node_one_shot.cpp
+  animation_node_output.cpp
+  Generating Code...
+  Compiling...
+  animation_node_state_machine.cpp
+  animation_node_state_machine_playback.cpp
+  animation_node_state_machine_transition.cpp
+  animation_node_sub2.cpp
+  animation_node_sync.cpp
+  animation_node_time_scale.cpp
+  animation_node_time_seek.cpp
+  animation_node_transition.cpp
+  animation_player.cpp
+  animation_root_node.cpp
+  animation_tree.cpp
+  area2d.cpp
+  area3d.cpp
+  array_mesh.cpp
+  array_occluder3d.cpp
+  aspect_ratio_container.cpp
+  atlas_texture.cpp
+  audio_bus_layout.cpp
+  audio_effect.cpp
+  audio_effect_amplify.cpp
+  Generating Code...
+  Compiling...
+  audio_effect_band_limit_filter.cpp

@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------
+									02 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> Making Raindrop scale to 0.01f for now.
+=> Making Raindrop spawner
+	(-) Keeping all children to 1 parent for now.
+		[=] Can only add/remove child.
+	(-) Keeping a pool of children
+	(-) IT WORKS!!
+	(-) queue_free just frees the node.
+	(-) remove_child just removes from the scene tree, but keeps the node around.
+		[=] If there is a reference, then can use the reference to make the object active again.
+		
+--------------------------------------------------------------------------------------
+									03 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> Making RainDrop Spawner
+	(-) Random x-position works for now.
+	(-) Making counter to check if all the drops have been spawned or not.
+	(-) [Fix] Make timePassed be dependent on delta.
+		[=] Currently, it will have variable timing according to the device specs/frame rate on the device.
+=> DropsController
+	(-) Give each drop a unique id.
+=> DropsSpawner
+	(-) Receive drops id and disable them.
+	(-) When spawning drops,
+		[=] [Do] After spawning all drops, we would have to look through the array to check which drop is available now for respawn.
+	(-) Assigning each drop an id at the time of spawning.
+	(-) [BUG] Removing drops at collision gives invalid child count.
+	
+--------------------------------------------------------------------------------------
+									04 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> [Do] Need to make a better pool manager to manage drops.
+=> For disabling a node
+	(-) Reparenting and then removing, by calling the parent node's remove child at index 0, might work?
+	(-) Should make the process much easier.
+	(-) [Done] Just passing a pointer of drop detected by player to the Spawner to disable it for now.
+		[=] Was calling "queue_free" at the test, so next time the node was being added, it wwas giving error, or crashing.
+=> [Do] Have DropsSpawner to check whether all the spawned drops are above the ground or not.
+	(-) Function checking every 1 sec or so for this.
+=> [Do] Make mechanism to check if the drop is below ground.
+=> [Do] Make the drop pass through the ground without interacting, collision off.
+
+--------------------------------------------------------------------------------------
+									07 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> [Do] Specific set of raindrops which will have their own sound.
+	(-) Might be 7 set of 4 raindrops
+	(-) Might be 7 sets with polyphny of 4.
+	(-) [Currently] Having only 1 type of sound.
+=> [DOne] Setting rigidbody of the raindrops to freeze, when disabling
+	(-) Also setting the linear velocity to 0.
+=> [Do] Make playable test level with given test track.
+=> [Do] Make Touch controls
+	(-) Keyboard/Arrow controls are not that good. 
+		[=] Moving left and right takes time.
