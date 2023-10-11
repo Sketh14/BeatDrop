@@ -1,7 +1,6 @@
 #ifndef TEST_H
 #define TEST_H
 
-//#define KEY_INPUT
 #define TOUCH_INPUT
 
 #ifdef KEY_INPUT
@@ -13,12 +12,12 @@
 #include <godot_cpp/classes/input_event_screen_drag.hpp>
 #endif
 
-
 #include <godot_cpp/classes/node2d.hpp>
 #include <godot_cpp/classes/texture2d.hpp>
 #include <godot_cpp/classes/rigid_body2d.hpp>
 #include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/input_event.hpp>
+#include <godot_cpp/classes/touch_screen_button.hpp>
 
 #include "DropsSpawner.h"
 #include "DropsController.h"
@@ -59,18 +58,20 @@ private:
 	float moveForceMult = 10.f, moveMultX = 1.0f;		//, moveMultY = 1.0f
 
 #ifdef TOUCH_INPUT
-	float deltaX;
-	bool rayCastHitPlayer;
+	float deltaX, deltaY;
+	bool pressedOnPlayer;
 #endif
 
 	RigidBody2D* playerRb;
 	Area2D* playerArea;
 	DropsSpawner* dropSpawner;
 	Node2D* playerNode;
+	TouchScreenButton* touchPlayerBt;
 
 	AudioStreamPlayer2D* playerSFX[4];
 
 	void OnBodyEntered(Variant body);
+	void OnTappingOnPlayer();
 	Test();
 	~Test();
 };

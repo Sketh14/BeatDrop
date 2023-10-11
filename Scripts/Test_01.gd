@@ -26,3 +26,7 @@ func _on_rain_drop_body_entered(body):
 
 func _on_area_2d_body_entered(body):
 	print("Collision Detected Area in side player")
+
+
+func _on_player_touch_pressed():
+	print("_on_player_touch_pressedr")
