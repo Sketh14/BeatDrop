@@ -7,9 +7,9 @@ Test::Test()
 {
 	moveForce = center = Vector2(0, 0);			//, pos
 	playMode = moving = false;
-	movingLeft = movingRight = rayCastHitPlayer = false;			//, movingUp, movingDown
+	movingLeft = movingRight = pressedOnPlayer = false;			//, movingUp, movingDown
 	moveForceMult = 10.f, moveMultX = 1.0f;		//, moveMultY = 1.0f
-	deltaX = 0.0f;
+	deltaX = deltaY = 0.0f;
 
 	playerRb = NULL, playerArea = NULL, playerNode = NULL, dropSpawner = NULL;
 
@@ -30,7 +30,8 @@ void Test::_ready()
 		return;
 
 	playerRb = get_node<RigidBody2D>("/root/Main/Player");
-	playerArea = get_node<Area2D>("/root/Main/Player/Area2D");
+	//playerArea = get_node<Area2D>("/root/Main/Player/Area2D");
+	playerArea = get_node<Area2D>("/root/Main/Player");
 	dropSpawner = get_node<DropsSpawner>("/root/Main/WaterDropsContainer/DropsSpawner");
 
 	if (playerArea == NULL)
@@ -52,6 +53,17 @@ void Test::_ready()
 	}
 
 	playerNode = get_node<Node2D>("/root/Main/Player");
+	touchPlayerBt = get_node<TouchScreenButton>("/root/Main/Player/PlayerTouch");
+
+	if (touchPlayerBt == NULL)
+		UtilityFunctions::print("touchPlayerBt not found");
+	else	//This is because the Editor will try to access it, while loading up.
+	{
+		touchPlayerBt->connect("pressed", Callable(this, "OnTappingOnPlayer"));
+		//touchPlayerBt->connect("released", Callable(this, "OnTappingOnPlayer"));
+	}
+
+	deltaY = playerNode->get_position().y;
 
 	//get_node<Test>("/root/Main/Player/Test");	
 	//print_tree();
@@ -85,8 +97,18 @@ void Test::OnBodyEntered(Variant body)
 	//dropSpawner->dropsSpawned--;
 }
 
+void Test::OnTappingOnPlayer() 
+{ 
+	pressedOnPlayer = !pressedOnPlayer;		//default value is false, so first value will be true
+	//UtilityFunctions::print("pressedOnPlayer : ", pressedOnPlayer);
+}
+
 void Test::_process(double delta)
 {
+	if (Engine::get_singleton()->is_editor_hint())
+		return;
+
+	//UtilityFunctions::print("Hello World from GDExtension");
 	if (!playMode)
 		return;
 
@@ -214,89 +236,39 @@ void Test::_input(const Ref<InputEvent>& event)
 		if (isTouchEvent)
 		{
 			Ref<InputEventScreenTouch> inputTouch = static_cast<Ref<InputEventScreenTouch>>(event);
-			if (inputTouch->is_pressed())
+			if (inputTouch != NULL)
 			{
-				Vector2 touchPos = inputTouch->get_position();
-				deltaX = touchPos.x - get_position().x;
+				if (inputTouch->is_pressed())
+				{
+					Vector2 touchPos = inputTouch->get_position();
+					deltaX = touchPos.x - playerNode->get_position().x;
 
-				//RayCast code to check if tapped on player
-			}
-			else if (inputTouch->is_released())
-			{
-				Vector2 touchPos = inputTouch->get_position();
-				float newPosX = 
+					//RayCast code to check if tapped on player
+					/*if (touchPlayerBt->is_pressed())
+					{
+						UtilityFunctions::print("Pressed touchPlayerBt");
+						pressedOnPlayer = true;
+					}
+					else
+						UtilityFunctions::print("Not Pressed touchPlayerBt");*/
+				}
+				else if (inputTouch->is_released())
+					pressedOnPlayer = false;
 			}
 		}
-#endif
 
-#ifdef KEY_INPUT
-		bool isInputEventKey = event->is_class("InputEventKey");
-		if (isInputEventKey)
+		if (pressedOnPlayer)
 		{
-			Ref<InputEventKey> inputKey = static_cast<Ref<InputEventKey>>(event);
-			if (inputKey->is_pressed())
+			Ref<InputEventScreenDrag> inputDrag = static_cast<Ref<InputEventScreenDrag>>(event);
+			if (inputDrag != NULL)
 			{
-				moving = true;
-				//UtilityFunctions::print("Key Pressed");
+				Vector2 touchPos = inputDrag->get_position();
+				float newPosX = touchPos.x - deltaX;
+				if (newPosX >= 40.0f && newPosX <= 680.0f)
+					playerNode->set_position(Vector2(newPosX, deltaY));
+					//return;
+				//UtilityFunctions::clampf(newPosX, 40.0f, 680.0f);
 
-				switch (inputKey->get_keycode())
-				{
-				case KEY_A:
-				case KEY_LEFT:
-					movingLeft = true;
-					//moveMultX = -2.0f;
-					moveForce.x = -2.0f;
-					break;
-
-				case KEY_D:
-				case KEY_RIGHT:
-					movingRight = true;
-					//moveMultX = 2.0f;
-					moveForce.x = 2.0f;
-					break;
-
-				default:
-					UtilityFunctions::print("Key Pressed");
-					break;
-				}
-			}
-			else if (inputKey->is_released())
-			{
-				//UtilityFunctions::print("Key Released");
-
-				switch (inputKey->get_keycode())
-				{
-				case KEY_A:
-				case KEY_LEFT:
-					movingLeft = false;
-					break;
-
-				case KEY_D:
-				case KEY_RIGHT:
-					movingRight = false;
-					break;
-
-				default:
-					UtilityFunctions::print("Key Pressed");
-					break;
-				}
-				
-				if (!movingLeft && movingRight)
-				{
-					//moveMultX = 2.0f;
-					moveForce.x = 2.0f;
-				}
-				else if (!movingRight && movingLeft)
-				{
-					//moveMultX = -2.0f;
-					moveForce.x = -2.0f;
-				}
-				else
-				{
-					//moveMultX = 0.0f;
-					moveForce.x = 0.0f;
-					moving = false;
-				}
 			}
 		}
 #endif
@@ -337,5 +309,5 @@ void Test::_bind_methods()
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "enablePlayMode"), "SetPlayMode", "GetPlayMode");
 
 	ClassDB::bind_method(D_METHOD("OnBodyEntered", "body"), &OnBodyEntered);
-	
+	ClassDB::bind_method(D_METHOD("OnTappingOnPlayer"), &OnTappingOnPlayer);	
 }
