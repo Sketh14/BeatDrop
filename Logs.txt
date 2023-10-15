@@ -67,3 +67,12 @@
 --------------------------------------------------------------------------------------
 => [Do] Made Start/Exit button.
 => [Do] Make BG for Main Menu
+
+
+--------------------------------------------------------------------------------------
+									ASSETS
+--------------------------------------------------------------------------------------
+=> https://cartooncoffee.itch.io/sunnycloud
+=> https://kekaiyo.itch.io/clouds
+=> https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set
+=> https://free-game-assets.itch.io/free-horizontal-game-backgrounds

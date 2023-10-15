@@ -1,35 +1,45 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8wfcwg70dpgg"]
+[gd_scene load_steps=15 format=3 uid="uid://b8wfcwg70dpgg"]
 
-[ext_resource type="Texture2D" uid="uid://cfcdph7ni367m" path="res://icon.svg" id="1_wtw2c"]
+[ext_resource type="Texture2D" uid="uid://5g6y71nf01s" path="res://Sprites/Gameplay/Bucket_Empty.png" id="1_r17v5"]
 [ext_resource type="AudioStream" uid="uid://cnhbcwtsp21k" path="res://Audio/SFX/Drop_0.wav" id="2_74xr0"]
-[ext_resource type="Script" path="res://Scripts/Test_01.gd" id="3_1wqtl"]
-[ext_resource type="Texture2D" uid="uid://bj6usrsbf4kdv" path="res://Sprites/White_block.png" id="4_pwkai"]
+[ext_resource type="Script" path="res://Scripts/BG_Controller.gd" id="3_3l6hd"]
+[ext_resource type="Texture2D" uid="uid://bj6usrsbf4kdv" path="res://Sprites/Environment/White_block.png" id="4_we4y5"]
 [ext_resource type="PackedScene" uid="uid://diy0x7kde3lfe" path="res://Prefabs/Rain_drop.res" id="5_py107"]
+[ext_resource type="Texture2D" uid="uid://daibpwd6do4ni" path="res://Sprites/Gameplay/Tap_Pillar.png" id="5_rcmii"]
 [ext_resource type="AudioStream" uid="uid://uspr21tqxcqg" path="res://Audio/BGM/catch.mp3" id="6_uts5l"]
+[ext_resource type="Texture2D" uid="uid://deerveep1j52y" path="res://Sprites/Environment/BG/1.png" id="8_1qr00"]
+[ext_resource type="Texture2D" uid="uid://be8p8ia1r0qt3" path="res://Sprites/Environment/BG/3.png" id="9_0xcya"]
+[ext_resource type="Texture2D" uid="uid://ch8txuebnidcw" path="res://Sprites/Environment/BG/2.png" id="10_y5upi"]
+[ext_resource type="Texture2D" uid="uid://c0v6dr334x2yl" path="res://Sprites/Environment/BG/4.png" id="11_bcwk8"]
+[ext_resource type="Texture2D" uid="uid://2x3r0lvq3y0c" path="res://Sprites/UI_BG/Tap_1.png" id="12_8bxnn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogkqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f1br"]
-size = Vector2(47.33, 48.67)
+size = Vector2(47.33, 44.3349)
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" type="Area2D" parent="."]
-position = Vector2(405, 1236)
-scale = Vector2(1.8, 1.8)
+position = Vector2(407, 1244)
+scale = Vector2(1.75, 1.75)
 collision_layer = 0
 collision_mask = 4
 
 [node name="PlayerTouch" type="TouchScreenButton" parent="Player"]
-scale = Vector2(2.4, 2.4)
+position = Vector2(0, -2.22229)
+scale = Vector2(2.4, 2.2)
 shape = SubResource("RectangleShape2D_ogkqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -2.16754)
 shape = SubResource("RectangleShape2D_5f1br")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/CollisionShape2D"]
-scale = Vector2(0.369004, 0.369004)
-texture = ExtResource("1_wtw2c")
+z_index = 1
+position = Vector2(0, 2.45325)
+scale = Vector2(0.094, 0.094)
+texture = ExtResource("1_r17v5")
 
 [node name="Test" type="Test" parent="Player"]
 moveForceMult = 4.5
@@ -64,12 +74,12 @@ volume_db = 4.0
 max_polyphony = 5
 
 [node name="Environment" type="Node" parent="."]
-script = ExtResource("3_1wqtl")
 
 [node name="Ground2" type="Sprite2D" parent="Environment"]
-position = Vector2(361.68, 1294)
+modulate = Color(0.431373, 0.345098, 0.215686, 1)
+position = Vector2(361.68, 1292)
 scale = Vector2(5.96, 0.199999)
-texture = ExtResource("4_pwkai")
+texture = ExtResource("4_we4y5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/Ground2"]
 collision_layer = 2
@@ -80,9 +90,9 @@ scale = Vector2(2.7, 2.7)
 shape = SubResource("RectangleShape2D_5f1br")
 
 [node name="RightBarrier" type="Sprite2D" parent="Environment"]
-position = Vector2(727.68, 1215)
+position = Vector2(728, 1214)
 scale = Vector2(0.120005, 1)
-texture = ExtResource("4_pwkai")
+texture = ExtResource("4_we4y5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/RightBarrier"]
 scale = Vector2(2.7, 2.7)
@@ -93,9 +103,9 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_5f1br")
 
 [node name="LeftBarrier" type="Sprite2D" parent="Environment"]
-position = Vector2(-9.31968, 1215)
+position = Vector2(-8, 1214)
 scale = Vector2(0.120005, 1)
-texture = ExtResource("4_pwkai")
+texture = ExtResource("4_we4y5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/LeftBarrier"]
 scale = Vector2(2.7, 2.7)
@@ -104,6 +114,72 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LeftBarrier/StaticBody2D"]
 shape = SubResource("RectangleShape2D_5f1br")
+
+[node name="Taps_Pillar" type="Node" parent="Environment"]
+
+[node name="Pillar_1" type="Sprite2D" parent="Environment/Taps_Pillar"]
+z_index = -1
+position = Vector2(54, 1222)
+scale = Vector2(1, 1.37045)
+texture = ExtResource("5_rcmii")
+flip_h = true
+
+[node name="Tap_1" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_1"]
+position = Vector2(62, -190)
+rotation = -0.139626
+scale = Vector2(0.109023, 0.0795527)
+texture = ExtResource("12_8bxnn")
+flip_h = true
+
+[node name="Pillar_2" type="Sprite2D" parent="Environment/Taps_Pillar"]
+z_index = -1
+position = Vector2(197, 1020)
+scale = Vector2(1, 1.37045)
+texture = ExtResource("5_rcmii")
+flip_h = true
+
+[node name="Tap_2" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_2"]
+position = Vector2(62, -190)
+rotation = -0.139626
+scale = Vector2(0.109023, 0.0795527)
+texture = ExtResource("12_8bxnn")
+flip_h = true
+
+[node name="Pillar_3" type="Sprite2D" parent="Environment/Taps_Pillar"]
+z_index = -1
+position = Vector2(360, 1222)
+scale = Vector2(1, 1.37045)
+texture = ExtResource("5_rcmii")
+
+[node name="Tap_3" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_3"]
+position = Vector2(-62, -190)
+rotation = 0.139626
+scale = Vector2(0.109023, 0.0795527)
+texture = ExtResource("12_8bxnn")
+
+[node name="Pillar_4" type="Sprite2D" parent="Environment/Taps_Pillar"]
+z_index = -1
+position = Vector2(516, 1022)
+scale = Vector2(1, 1.37045)
+texture = ExtResource("5_rcmii")
+
+[node name="Tap_4" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_4"]
+position = Vector2(-62, -190)
+rotation = 0.139626
+scale = Vector2(0.109023, 0.0795527)
+texture = ExtResource("12_8bxnn")
+
+[node name="Pillar_5" type="Sprite2D" parent="Environment/Taps_Pillar"]
+z_index = -1
+position = Vector2(663, 1222)
+scale = Vector2(1, 1.37045)
+texture = ExtResource("5_rcmii")
+
+[node name="Tap_5" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_5"]
+position = Vector2(-62, -190)
+rotation = 0.139626
+scale = Vector2(0.109023, 0.0795527)
+texture = ExtResource("12_8bxnn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(360, 640)
@@ -151,14 +227,104 @@ maxSpawnTime = 5
 stream = ExtResource("6_uts5l")
 autoplay = true
 
-[connection signal="pressed" from="Player/PlayerTouch" to="Environment" method="_on_player_touch_pressed"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop2" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop3" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop4" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop5" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop6" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop7" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop8" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop9" to="Environment" method="_on_rain_drop_body_entered"]
-[connection signal="body_entered" from="WaterDropsContainer/RainDrop10" to="Environment" method="_on_rain_drop_body_entered"]
+[node name="BackGround" type="CanvasLayer" parent="." node_paths=PackedStringArray("bg_Streak", "fg_Clouds", "bg_Clouds")]
+layer = -1
+script = ExtResource("3_3l6hd")
+streakSpeedMult = 0.01
+bg_Streak = NodePath("Control/Streak")
+fg_Clouds = [NodePath("Control/FG_Clouds/Fg_Clouds_1"), NodePath("Control/FG_Clouds/Fg_Clouds_2")]
+bg_Clouds = [NodePath("Control/BG_Clouds/Bg_Clouds_1"), NodePath("Control/BG_Clouds/Bg_Clouds_2")]
+moveSpeedMult = Array[float]([10.0, 20.0])
+
+[node name="Control" type="Control" parent="BackGround"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sky" type="TextureRect" parent="BackGround/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_right = -144.0
+offset_bottom = -959.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.95, 3.95)
+texture = ExtResource("8_1qr00")
+
+[node name="Streak" type="TextureRect" parent="BackGround/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 460.0
+offset_top = 143.0
+offset_right = 316.0
+offset_bottom = -813.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("9_0xcya")
+stretch_mode = 2
+
+[node name="BG_Clouds" type="Node" parent="BackGround/Control"]
+
+[node name="Bg_Clouds_1" type="TextureRect" parent="BackGround/Control/BG_Clouds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -517.0
+offset_top = 405.0
+offset_right = -661.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("10_y5upi")
+
+[node name="Bg_Clouds_2" type="TextureRect" parent="BackGround/Control/BG_Clouds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1038.0
+offset_top = 405.0
+offset_right = 894.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("10_y5upi")
+
+[node name="FG_Clouds" type="Node" parent="BackGround/Control"]
+
+[node name="Fg_Clouds_1" type="TextureRect" parent="BackGround/Control/FG_Clouds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 405.0
+offset_right = -144.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("11_bcwk8")
+
+[node name="Fg_Clouds_2" type="TextureRect" parent="BackGround/Control/FG_Clouds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1555.0
+offset_top = 405.0
+offset_right = 1411.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("11_bcwk8")
