@@ -84,6 +84,9 @@ void DropsSpawner::_ready()
 
 void DropsSpawner::_process(double delta)
 {
+	if (Engine::get_singleton()->is_editor_hint())
+		return;
+
 	if (!sceneReady)
 		return;
 

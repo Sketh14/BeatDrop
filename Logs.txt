@@ -55,3 +55,24 @@
 => [Do] Make Touch controls
 	(-) Keyboard/Arrow controls are not that good. 
 		[=] Moving left and right takes time.
+	(-) Moving cursor too quickly effectively breaks code.
+
+--------------------------------------------------------------------------------------
+									09 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> [Do] Start making UI for the game.
+
+--------------------------------------------------------------------------------------
+									10 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> [Do] Made Start/Exit button.
+=> [Do] Make BG for Main Menu
+
+
+--------------------------------------------------------------------------------------
+									ASSETS
+--------------------------------------------------------------------------------------
+=> https://cartooncoffee.itch.io/sunnycloud
+=> https://kekaiyo.itch.io/clouds
+=> https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set
+=> https://free-game-assets.itch.io/free-horizontal-game-backgrounds
