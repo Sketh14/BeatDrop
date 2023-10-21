@@ -6,7 +6,7 @@
 DropsSpawner::DropsSpawner()
 {
 	dropsContainer = NULL;
-	spawnPos = Vector2(0, 0);
+	spawnPos = Vector2(0.0, 0.0);
 	maxSpawnTime = minSpawnTime = randCallTime = dropToCall = dropCallCount = 0;
 	checkDropsCounter = timePassedF = 0.0f;
 	dropsSpawned = 0;
@@ -16,6 +16,9 @@ DropsSpawner::DropsSpawner()
 		drops[i] = NULL;
 		dropsEnableStatus[i] = false;
 	}
+
+	for (int i = 0; i < 5; i++)
+		dropsSpawnPos.push_back(Vector2(0.0, 0.0));
 
 	spawnTimes = NULL, consecutive = NULL;
 	sceneReady = false;
@@ -234,6 +237,9 @@ void DropsSpawner::SetMinSpawnTime(int spawnTime) { minSpawnTime = spawnTime; }
 int DropsSpawner::GetMaxSpawnTime() { return maxSpawnTime; }
 void DropsSpawner::SetMaxSpawnTime(int spawnTime) { maxSpawnTime = spawnTime; }
 
+PackedVector2Array DropsSpawner::GetDropSpawnPos1() { return dropsSpawnPos; }
+void DropsSpawner::SetDropSpawnPos1(PackedVector2Array dropsSpawnPos) { dropsSpawnPos = dropsSpawnPos; }
+
 //RigidBody2D Test::GetPlayerRB() { return playerRb; }
 //void Test::SetPlayerRB(RigidBody2D rigidBody) { get_node<RigidBody2D>("PlayerRB_2D"); }			//RigidBody2D rigidBody
 #pragma endregion
@@ -247,6 +253,10 @@ void DropsSpawner::_bind_methods()
 	ClassDB::bind_method(D_METHOD("SetMaxSpawnTime", "maxSpawnTime"), &SetMaxSpawnTime);
 	ClassDB::bind_method(D_METHOD("GetMaxSpawnTime"), &GetMaxSpawnTime);
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "maxSpawnTime"), "SetMaxSpawnTime", "GetMaxSpawnTime");
+
+	ClassDB::bind_method(D_METHOD("SetDropSpawnPos1", "spawnPos"), &SetDropSpawnPos1);
+	ClassDB::bind_method(D_METHOD("GetDropSpawnPos1"), &GetDropSpawnPos1);
+	ADD_PROPERTY(PropertyInfo(Variant::PACKED_VECTOR2_ARRAY, "dropsSpawnPos"), "SetDropSpawnPos1", "GetDropSpawnPos1");
 
 	ClassDB::bind_method(D_METHOD("SpawnDrops"), &SpawnDrops);
 }

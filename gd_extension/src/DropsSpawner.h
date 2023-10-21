@@ -27,6 +27,9 @@ public:
 	void SetMinSpawnTime(int spawnTime);
 	int GetMinSpawnTime();
 
+	void SetDropSpawnPos1(PackedVector2Array dropsSpawnPos);
+	PackedVector2Array GetDropSpawnPos1();
+
 	void DisableDrop(unsigned short dropID, Node2D* drop);
 
 protected:
@@ -50,6 +53,8 @@ private:
 
 	float checkDropsCounter;
 	void CheckIfDropsAreBelowGround();
+
+	PackedVector2Array dropsSpawnPos;
 
 	DropsSpawner();
 	~DropsSpawner();

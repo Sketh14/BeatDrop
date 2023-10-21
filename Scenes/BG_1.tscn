@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://djv4uqx7v8f27"]
+
+[ext_resource type="Script" path="res://Scripts/Sky_BG_Controller.gd" id="1_wqv4o"]
+[ext_resource type="Texture2D" uid="uid://deerveep1j52y" path="res://Sprites/Environment/BG/1.png" id="2_6075t"]
+[ext_resource type="Texture2D" uid="uid://be8p8ia1r0qt3" path="res://Sprites/Environment/BG/3.png" id="3_tdois"]
+[ext_resource type="Texture2D" uid="uid://ch8txuebnidcw" path="res://Sprites/Environment/BG/2.png" id="4_mddly"]
+[ext_resource type="Texture2D" uid="uid://c0v6dr334x2yl" path="res://Sprites/Environment/BG/4.png" id="5_wxk4w"]
+
+[node name="BackGround" type="CanvasLayer" node_paths=PackedStringArray("bg_Streak", "fg_Clouds", "bg_Clouds")]
+layer = -1
+script = ExtResource("1_wqv4o")
+streakSpeedMult = 0.01
+bg_Streak = NodePath("Control/Streak")
+fg_Clouds = [NodePath("Control/FG_Clouds/Fg_Clouds_1"), NodePath("Control/FG_Clouds/Fg_Clouds_2")]
+bg_Clouds = [NodePath("Control/BG_Clouds/Bg_Clouds_1"), NodePath("Control/BG_Clouds/Bg_Clouds_2")]
+moveSpeedMult = Array[float]([10.0, 20.0])
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sky" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_right = -144.0
+offset_bottom = -959.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.95, 3.95)
+texture = ExtResource("2_6075t")
+
+[node name="Streak" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 460.0
+offset_top = 143.0
+offset_right = 316.0
+offset_bottom = -813.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_tdois")
+stretch_mode = 2
+
+[node name="BG_Clouds" type="Node" parent="Control"]
+
+[node name="Bg_Clouds_1" type="TextureRect" parent="Control/BG_Clouds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -517.0
+offset_top = 405.0
+offset_right = -661.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("4_mddly")
+
+[node name="Bg_Clouds_2" type="TextureRect" parent="Control/BG_Clouds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1038.0
+offset_top = 405.0
+offset_right = 894.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("4_mddly")
+
+[node name="FG_Clouds" type="Node" parent="Control"]
+
+[node name="Fg_Clouds_1" type="TextureRect" parent="Control/FG_Clouds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 405.0
+offset_right = -144.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("5_wxk4w")
+
+[node name="Fg_Clouds_2" type="TextureRect" parent="Control/FG_Clouds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1555.0
+offset_top = 405.0
+offset_right = 1411.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("5_wxk4w")

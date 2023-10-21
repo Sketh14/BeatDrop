@@ -1,16 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8wfcwg70dpgg"]
+[gd_scene load_steps=11 format=3 uid="uid://b8wfcwg70dpgg"]
 
 [ext_resource type="Texture2D" uid="uid://5g6y71nf01s" path="res://Sprites/Gameplay/Bucket_Empty.png" id="1_r17v5"]
 [ext_resource type="AudioStream" uid="uid://cnhbcwtsp21k" path="res://Audio/SFX/Drop_0.wav" id="2_74xr0"]
-[ext_resource type="Script" path="res://Scripts/BG_Controller.gd" id="3_3l6hd"]
 [ext_resource type="Texture2D" uid="uid://bj6usrsbf4kdv" path="res://Sprites/Environment/White_block.png" id="4_we4y5"]
 [ext_resource type="PackedScene" uid="uid://diy0x7kde3lfe" path="res://Prefabs/Rain_drop.res" id="5_py107"]
 [ext_resource type="Texture2D" uid="uid://daibpwd6do4ni" path="res://Sprites/Gameplay/Tap_Pillar.png" id="5_rcmii"]
 [ext_resource type="AudioStream" uid="uid://uspr21tqxcqg" path="res://Audio/BGM/catch.mp3" id="6_uts5l"]
-[ext_resource type="Texture2D" uid="uid://deerveep1j52y" path="res://Sprites/Environment/BG/1.png" id="8_1qr00"]
-[ext_resource type="Texture2D" uid="uid://be8p8ia1r0qt3" path="res://Sprites/Environment/BG/3.png" id="9_0xcya"]
-[ext_resource type="Texture2D" uid="uid://ch8txuebnidcw" path="res://Sprites/Environment/BG/2.png" id="10_y5upi"]
-[ext_resource type="Texture2D" uid="uid://c0v6dr334x2yl" path="res://Sprites/Environment/BG/4.png" id="11_bcwk8"]
+[ext_resource type="PackedScene" uid="uid://djv4uqx7v8f27" path="res://Scenes/BG_1.tscn" id="8_sumqy"]
 [ext_resource type="Texture2D" uid="uid://2x3r0lvq3y0c" path="res://Sprites/UI_BG/Tap_1.png" id="12_8bxnn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogkqg"]
@@ -227,104 +223,8 @@ maxSpawnTime = 5
 stream = ExtResource("6_uts5l")
 autoplay = true
 
-[node name="BackGround" type="CanvasLayer" parent="." node_paths=PackedStringArray("bg_Streak", "fg_Clouds", "bg_Clouds")]
-layer = -1
-script = ExtResource("3_3l6hd")
-streakSpeedMult = 0.01
-bg_Streak = NodePath("Control/Streak")
-fg_Clouds = [NodePath("Control/FG_Clouds/Fg_Clouds_1"), NodePath("Control/FG_Clouds/Fg_Clouds_2")]
-bg_Clouds = [NodePath("Control/BG_Clouds/Bg_Clouds_1"), NodePath("Control/BG_Clouds/Bg_Clouds_2")]
-moveSpeedMult = Array[float]([10.0, 20.0])
+[node name="BackGround" parent="." node_paths=PackedStringArray("fg_Clouds", "bg_Clouds") instance=ExtResource("8_sumqy")]
+fg_Clouds = [null, null]
+bg_Clouds = [null, null]
 
-[node name="Control" type="Control" parent="BackGround"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Sky" type="TextureRect" parent="BackGround/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -3.0
-offset_right = -144.0
-offset_bottom = -959.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3.95, 3.95)
-texture = ExtResource("8_1qr00")
-
-[node name="Streak" type="TextureRect" parent="BackGround/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 460.0
-offset_top = 143.0
-offset_right = 316.0
-offset_bottom = -813.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-texture = ExtResource("9_0xcya")
-stretch_mode = 2
-
-[node name="BG_Clouds" type="Node" parent="BackGround/Control"]
-
-[node name="Bg_Clouds_1" type="TextureRect" parent="BackGround/Control/BG_Clouds"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -517.0
-offset_top = 405.0
-offset_right = -661.0
-offset_bottom = -551.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.7, 2.7)
-texture = ExtResource("10_y5upi")
-
-[node name="Bg_Clouds_2" type="TextureRect" parent="BackGround/Control/BG_Clouds"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1038.0
-offset_top = 405.0
-offset_right = 894.0
-offset_bottom = -551.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.7, 2.7)
-texture = ExtResource("10_y5upi")
-
-[node name="FG_Clouds" type="Node" parent="BackGround/Control"]
-
-[node name="Fg_Clouds_1" type="TextureRect" parent="BackGround/Control/FG_Clouds"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 405.0
-offset_right = -144.0
-offset_bottom = -551.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.7, 2.7)
-texture = ExtResource("11_bcwk8")
-
-[node name="Fg_Clouds_2" type="TextureRect" parent="BackGround/Control/FG_Clouds"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1555.0
-offset_top = 405.0
-offset_right = 1411.0
-offset_bottom = -551.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.7, 2.7)
-texture = ExtResource("11_bcwk8")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
