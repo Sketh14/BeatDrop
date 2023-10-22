@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqfxbfptxd3yt"]
 
 [ext_resource type="Script" path="res://Scripts/Pipe_BG_Controller.gd" id="1_rwkon"]
-[ext_resource type="Texture2D" uid="uid://c67r7fd32kgcn" path="res://Sprites/Environment/BG_2/Pipeline_02.png" id="2_l6gbs"]
 [ext_resource type="Texture2D" uid="uid://ddgrpyducdx7o" path="res://Sprites/Environment/BG_2/Wall.png" id="2_vgsbh"]
 [ext_resource type="PackedScene" uid="uid://bjnyowj7q0e6v" path="res://Scenes/BG2/Steam.tscn" id="3_k2mw4"]
+[ext_resource type="Texture2D" uid="uid://cfom7ryk25htl" path="res://Sprites/Environment/BG_2/PipeLine_BG.png" id="3_qhtv6"]
 
 [node name="BackGround" type="CanvasLayer"]
 layer = -1
@@ -40,16 +40,17 @@ stretch_mode = 4
 [node name="Pipeline" type="Node" parent="Control"]
 
 [node name="Pipeline_1" type="TextureRect" parent="Control/Pipeline"]
+z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -101.0
-offset_right = -324.0
-offset_bottom = -806.0
+offset_top = 3.0
+offset_right = -223.0
+offset_bottom = -803.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.7, 2.7)
-texture = ExtResource("2_l6gbs")
+texture = ExtResource("3_qhtv6")
 expand_mode = 1
 stretch_mode = 4
 

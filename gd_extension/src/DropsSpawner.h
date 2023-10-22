@@ -27,6 +27,9 @@ public:
 	void SetMinSpawnTime(int spawnTime);
 	int GetMinSpawnTime();
 
+	void SetActivateSpawner(bool status);
+	bool GetActivateSpawner();
+
 	void SetDropSpawnPos1(PackedVector2Array dropsSpawnPos);
 	PackedVector2Array GetDropSpawnPos1();
 
@@ -39,7 +42,7 @@ private:
 	Node2D* dropsContainer;
 	Node2D* drops[10];
 
-	bool sceneReady, initialSpawnsDone;
+	bool sceneReady, initialSpawnsDone, activateSpawner;
 
 	Vector2 spawnPos;
 	bool dropsEnableStatus[10];

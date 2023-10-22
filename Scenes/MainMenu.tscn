@@ -1,15 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3ajefh7urhaq"]
+[gd_scene load_steps=15 format=3 uid="uid://d3ajefh7urhaq"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenuController.gd" id="1_d14gf"]
 [ext_resource type="Texture2D" uid="uid://bj6usrsbf4kdv" path="res://Sprites/Environment/White_block.png" id="1_q4cjw"]
 [ext_resource type="StyleBox" uid="uid://bbdas401jf1h2" path="res://ButtonTHeme/Button_Normal.tres" id="2_1t3ka"]
 [ext_resource type="Texture2D" uid="uid://b6jiopvkqng51" path="res://Sprites/UI_BG/Bucket_Floor.png" id="2_e4xu6"]
+[ext_resource type="Texture2D" uid="uid://m8ewagd5vpub" path="res://Sprites/Environment/Brick_1.png" id="2_ene8c"]
+[ext_resource type="Texture2D" uid="uid://bfa7m886wve4g" path="res://Sprites/Environment/Pipe_Bent.png" id="2_jnwm5"]
+[ext_resource type="Texture2D" uid="uid://ctjyma5jgf5y4" path="res://Sprites/Environment/BG_2/Pipe_Straight.png" id="2_ln2bc"]
 [ext_resource type="Texture2D" uid="uid://cuufirxnsm3y6" path="res://Sprites/UI_BG/Bucket_1.png" id="3_k0fmy"]
 [ext_resource type="Texture2D" uid="uid://ublvfigv5fpn" path="res://Sprites/UI_BG/Drop_1.png" id="4_iscpa"]
 [ext_resource type="Texture2D" uid="uid://2x3r0lvq3y0c" path="res://Sprites/UI_BG/Tap_1.png" id="5_hejii"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r05mq"]
-bg_color = Color(1, 1, 1, 1)
+[ext_resource type="Texture2D" uid="uid://2sthyf338uwf" path="res://Sprites/Environment/BG_2/Tap_2.png" id="6_1umd3"]
+[ext_resource type="StyleBox" uid="uid://chey7xqs2jk3h" path="res://ButtonTHeme/Button_UI.tres" id="11_wnmbn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20ux2"]
 bg_color = Color(1, 0, 0, 1)
@@ -19,6 +21,16 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_color = Color(0.556863, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(6, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsxyp"]
+bg_color = Color(0.988235, 0.227451, 0.227451, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.701961, 0.054902, 0.0980392, 1)
 shadow_size = 1
 shadow_offset = Vector2(6, 6)
 
@@ -32,17 +44,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackDrop" type="Panel" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_r05mq")
-
-[node name="Tap_Wall" type="TextureRect" parent="Control"]
-modulate = Color(0.27451, 0.815686, 0.533333, 1)
+[node name="Tap_Wall_Og" type="TextureRect" parent="Control"]
+modulate = Color(0.4375, 0.109375, 0.144531, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,6 +56,587 @@ offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_q4cjw")
+
+[node name="Bricks_Pattern_a_1" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -253.0
+offset_top = -569.0
+offset_right = -153.0
+offset_bottom = -469.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_a_1"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_a_1"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_a_1"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 29.0
+offset_right = -60.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Bricks_Pattern_a_2" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 244.0
+offset_top = -566.0
+offset_right = 344.0
+offset_bottom = -466.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_a_2"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_a_2"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_a_2"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 29.0
+offset_right = -60.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Bricks_Pattern_a_3" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -289.0
+offset_right = 84.0
+offset_bottom = -189.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_a_3"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_a_3"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_a_3"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 29.0
+offset_right = -60.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Bricks_Pattern_a_4" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 208.0
+offset_top = 72.0
+offset_right = 308.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_a_4"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_a_4"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_a_4"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 29.0
+offset_right = -60.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Bricks_Pattern_b_1" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -297.0
+offset_right = -94.0
+offset_bottom = -197.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_b_1"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_b_1"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = 48.0
+offset_right = -99.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_b_1"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 29.0
+offset_right = -60.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Bricks_Pattern_b_2" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -88.0
+offset_right = 57.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_b_2"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_b_2"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = 48.0
+offset_right = -99.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_b_2"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 29.0
+offset_right = -60.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Bricks_Pattern_b_3" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -539.0
+offset_right = 109.0
+offset_bottom = -439.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_b_3"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_b_3"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = 48.0
+offset_right = -99.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_b_3"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 29.0
+offset_right = -60.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Bricks_Pattern_b_4" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 293.0
+offset_top = -229.0
+offset_right = 393.0
+offset_bottom = -129.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_b_4"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_b_4"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = 48.0
+offset_right = -99.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_b_4"]
+modulate = Color(0.607843, 0.219608, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 29.0
+offset_right = -60.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.387463
+texture = ExtResource("2_ene8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="BG_Bent_Pipe" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 814.0
+offset_top = 657.0
+offset_right = 328.0
+offset_bottom = 295.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.97222
+texture = ExtResource("2_jnwm5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="BG_Straight_Pipe2_H1" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 805.0
+offset_top = 964.0
+offset_right = 131.0
+offset_bottom = 645.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.02458
+texture = ExtResource("2_ln2bc")
+expand_mode = 1
+
+[node name="BG_Straight_Pipe3_H2" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 830.0
+offset_top = 902.0
+offset_right = 156.0
+offset_bottom = 583.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.02458
+texture = ExtResource("2_ln2bc")
+expand_mode = 1
+
+[node name="BG_Straight_Pipe_V1" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 497.0
+offset_top = -20.0
+offset_right = -177.0
+offset_bottom = -339.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ln2bc")
+expand_mode = 1
 
 [node name="Bucket_Floor" type="TextureRect" parent="Control"]
 layout_mode = 1
@@ -89,10 +673,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 197.0
-offset_top = 265.0
-offset_right = -432.0
-offset_bottom = -893.0
+offset_left = 207.0
+offset_top = 281.0
+offset_right = -444.0
+offset_bottom = -907.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.0698132
@@ -100,7 +684,8 @@ texture = ExtResource("4_iscpa")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="BG_Tap" type="TextureRect" parent="Control"]
+[node name="BG_Tap_Og" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,6 +698,22 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.0698132
 texture = ExtResource("5_hejii")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="BG_Tap2" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 215.0
+offset_top = 128.0
+offset_right = -210.0
+offset_bottom = -771.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0698132
+texture = ExtResource("6_1umd3")
 expand_mode = 1
 stretch_mode = 4
 
@@ -144,6 +745,27 @@ text = "START"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CreditsBt" type="Button" parent="Control"]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 18.0
+offset_right = 146.0
+offset_bottom = 78.0
+theme_override_styles/normal = ExtResource("11_wnmbn")
+
+[node name="Label" type="Label" parent="Control/CreditsBt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 29
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ExitBt" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = 7
@@ -172,11 +794,158 @@ text = "EXIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainMenuController" type="Node2D" parent="." node_paths=PackedStringArray("drop", "bucket")]
+[node name="CreditsPanel" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -265.0
+offset_right = 265.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseButton" type="Button" parent="Control/CreditsPanel"]
+layout_mode = 1
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xsxyp")
+
+[node name="Label" type="Label" parent="Control/CreditsPanel/CloseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -13
+theme_override_font_sizes/font_size = 69
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MadeByLabel" type="Label" parent="Control/CreditsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.5
+offset_top = -168.0
+offset_right = 217.5
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 65
+text = "MADE BY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnderLine" type="Label" parent="Control/CreditsPanel/MadeByLabel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -73.0
+offset_bottom = -8.99994
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 43
+text = "_____________"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkethLabel" type="Label" parent="Control/CreditsPanel/MadeByLabel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_bottom = 36.0001
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 44
+text = "SKETH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioDesignLabel" type="Label" parent="Control/CreditsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.0
+offset_top = 29.0
+offset_right = 218.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 65
+text = "AUDIO DESIGN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnderLine" type="Label" parent="Control/CreditsPanel/AudioDesignLabel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -73.0
+offset_bottom = -8.99994
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 43
+text = "_______________________"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MonoBoxLabel" type="Label" parent="Control/CreditsPanel/AudioDesignLabel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_bottom = 36.0001
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 44
+text = "MONOBOX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuController" type="Node2D" parent="." node_paths=PackedStringArray("drop", "bucket", "creditsBt", "creditsPanel")]
 script = ExtResource("1_d14gf")
 drop = NodePath("../Control/BG_Drop")
 bucket = NodePath("../Control/BG_Bucket")
 speedMult = 0.5
+creditsBt = NodePath("../Control/CreditsBt")
+creditsPanel = NodePath("../Control/CreditsPanel")
 
 [connection signal="pressed" from="Control/StartBt" to="MainMenuController" method="_on_start_bt_pressed"]
+[connection signal="pressed" from="Control/CreditsBt" to="MainMenuController" method="_on_credits_bt_pressed"]
 [connection signal="pressed" from="Control/ExitBt" to="MainMenuController" method="_on_exit_bt_pressed"]
+[connection signal="pressed" from="Control/CreditsPanel/CloseButton" to="MainMenuController" method="_on_credtis_close_button_pressed"]

@@ -9,6 +9,9 @@ var time_taken = 0.0
 @export var bucket : Control
 @export var speedMult : float = 1.0
 
+@export var creditsBt : Button
+@export var creditsPanel : Panel
+
 func _on_start_bt_pressed():
 	get_tree().change_scene_to_file("res://Scenes/MainGame.tscn")
 
@@ -36,3 +39,13 @@ func _ready():
 	endBucketPos = Vector2(120,684)
 	#drop = $"../Control/BG_Drop" as Control
 	#print($"../Control/BG_Drop".position)
+
+
+func _on_credits_bt_pressed():
+	creditsBt.hide()
+	creditsPanel.show()
+
+
+func _on_credtis_close_button_pressed():
+	creditsBt.show()
+	creditsPanel.hide()

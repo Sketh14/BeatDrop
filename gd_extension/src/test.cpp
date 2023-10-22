@@ -21,7 +21,9 @@ Test::~Test() { }
 
 void Test::_ready()
 {
+#ifdef DEBUG_BLOCK
 	UtilityFunctions::print("Hello World from GDExtension");
+#endif
 
 	//pos = Vector2(0, 100);
 	moveForce = Vector2(0, 0);
@@ -71,7 +73,9 @@ void Test::_ready()
 
 void Test::OnBodyEntered(Variant body)
 {
+#ifdef DEBUG_BLOCK
 	UtilityFunctions::print("Collision Detected");
+#endif
 
 	//unsigned short ID = 0;
 	Node2D* dropCollected = Object::cast_to<Node2D>(body);
@@ -87,6 +91,7 @@ void Test::OnBodyEntered(Variant body)
 					playerSFX[i]->play();*/
 
 			playerSFX[0]->play();
+			emit_signal("drop_collected", "Drop Collected");
 			//Not Any of this below
 			//controllerNode->reparent(NULL);
 			//dropCollected->call_deferred("queue_free");
@@ -108,7 +113,9 @@ void Test::_process(double delta)
 	if (Engine::get_singleton()->is_editor_hint())
 		return;
 
-	//UtilityFunctions::print("Hello World from GDExtension");
+#ifdef DEBUG_BLOCK
+	UtilityFunctions::print("Hello World from GDExtension");
+#endif
 	if (!playMode)
 		return;
 
@@ -119,7 +126,9 @@ void Test::_process(double delta)
 		//set_position(pos);
 
 		playerRb->apply_impulse(moveForce * moveForceMult, Vector2(0, 0));
-		//UtilityFunctions::print("Player Pos: ", playerNode->get_position().x);
+#ifdef DEBUG_BLOCK
+		UtilityFunctions::print("Player Pos: ", playerNode->get_position().x);
+#endif
 	}
 
 	/*if (pos.x > 720.0f)
@@ -144,7 +153,9 @@ void Test::_process(double delta)
 			if (inputKey->is_pressed())
 			{
 				moving = true;
+#ifdef DEBUG_BLOCK
 				UtilityFunctions::print("Key Pressed");
+#endif
 
 				switch (inputKey->get_keycode())
 				{
@@ -173,13 +184,17 @@ void Test::_process(double delta)
 					break;
 
 				default:
+#ifdef DEBUG_BLOCK
 					UtilityFunctions::print("Key Pressed");
+#endif
 					break;
 				}
 			}
 			else if (inputKey->is_released())
 			{
+#ifdef DEBUG_BLOCK
 				UtilityFunctions::print("Key Released");
+#endif
 
 				switch (inputKey->get_keycode())
 				{
@@ -204,7 +219,9 @@ void Test::_process(double delta)
 					break;
 
 				default:
+#ifdef DEBUG_BLOCK
 					UtilityFunctions::print("Key Pressed");
+#endif
 					break;
 				}
 				
@@ -246,7 +263,9 @@ void Test::_input(const Ref<InputEvent>& event)
 					//RayCast code to check if tapped on player
 					/*if (touchPlayerBt->is_pressed())
 					{
+#ifdef DEBUG_BLOCK
 						UtilityFunctions::print("Pressed touchPlayerBt");
+#endif
 						pressedOnPlayer = true;
 					}
 					else
@@ -309,5 +328,7 @@ void Test::_bind_methods()
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "enablePlayMode"), "SetPlayMode", "GetPlayMode");
 
 	ClassDB::bind_method(D_METHOD("OnBodyEntered", "body"), &OnBodyEntered);
-	ClassDB::bind_method(D_METHOD("OnTappingOnPlayer"), &OnTappingOnPlayer);	
+	ClassDB::bind_method(D_METHOD("OnTappingOnPlayer"), &OnTappingOnPlayer);
+
+	ADD_SIGNAL(MethodInfo("drop_collected", PropertyInfo(Variant::STRING, "Message")));
 }

@@ -74,6 +74,27 @@
 => [Do] Make Pause Menu
 
 --------------------------------------------------------------------------------------
+									21 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> [Done] Made pause mechanism
+=> [Done For Now] Pause Menu
+	(-) Made basic Pause Menu for now.
+=> [Fix] Play soundtrack or not when paused
+	(-) Play Main Menu track for this.
+=> Added basic scoring system
+	[Do] Can make multiplier for this.
+=> [Done For Now] Game Over Menu
+	(-) Made basic Game Over Menu
+=> Player returns back to Main menu if clicked on the button
+
+--------------------------------------------------------------------------------------
+									22 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> [Do] The drops are in front of the tap, can make their scale bigger as they come out of the tap
+=> [Do] Add another tap near the middle.
+=> [Do] Make Credits
+
+--------------------------------------------------------------------------------------
 									ASSETS
 --------------------------------------------------------------------------------------
 => https://cartooncoffee.itch.io/sunnycloud

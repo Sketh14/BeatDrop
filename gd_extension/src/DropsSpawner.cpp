@@ -2,6 +2,7 @@
 
 #include "DropsSpawner.h"
 #include <godot_cpp/classes/engine.hpp>
+#include <godot_cpp/classes/animation_player.hpp>
 
 DropsSpawner::DropsSpawner()
 {
@@ -21,7 +22,7 @@ DropsSpawner::DropsSpawner()
 		dropsSpawnPos.push_back(Vector2(0.0, 0.0));
 
 	spawnTimes = NULL, consecutive = NULL;
-	sceneReady = false;
+	sceneReady = activateSpawner = false;
 }
 
 DropsSpawner::~DropsSpawner() 
@@ -37,9 +38,8 @@ void DropsSpawner::_ready()
 	if (Engine::get_singleton()->is_editor_hint())
 		return;
 
-#ifdef TEST_MODE
-	set_process_mode(Node::ProcessMode::PROCESS_MODE_DISABLED);
-#endif
+	if (!activateSpawner)
+		set_process_mode(Node::ProcessMode::PROCESS_MODE_DISABLED);
 
 	dropsContainer = get_node<Node2D>("/root/Main/WaterDropsContainer");
 	if (dropsContainer != NULL)
@@ -51,8 +51,10 @@ void DropsSpawner::_ready()
 		{
 			drops[i] = Object::cast_to<Node2D>(dropsContainer->get_child(i));
 		}
-		
-		//UtilityFunctions::print("Trying to remove", dropsContainer->get_child_count());
+
+#ifdef DEBUG_BLOCK
+		UtilityFunctions::print("Trying to remove", dropsContainer->get_child_count());
+#endif
 		for (int i = 0; i < childCount; i++)
 		{
 			if (drops[i] != NULL)
@@ -65,11 +67,15 @@ void DropsSpawner::_ready()
 				tempDrop->dropID = i;/**/
 				//drops[i]->queue_free();
 
-				//UtilityFunctions::print("Successful removal at : ", i);
+#ifdef DEBUG_BLOCK
+				UtilityFunctions::print("Successful removal at : ", i);
+#endif
 			}
 			//childCount = dropsContainer->get_child_count();
 		}
+#ifdef DEBUG_BLOCK
 		UtilityFunctions::print("Successful removal, Count : ", dropsContainer->get_child_count());
+#endif
 
 		/*dropsContainer->remove_child(drops[0]);
 		SpawnDrops();*/
@@ -77,8 +83,17 @@ void DropsSpawner::_ready()
 	}
 
 	//spawnTimes = new float(10);
+
+#ifdef TEST_MODE
+	consecutive = new bool[10] {false, false, false, false, false, false, false, false, false, false};
+
+	spawnTimes = new float[10];
+	for (int i = 0; i < 10; i++)
+		spawnTimes[i] = (UtilityFunctions::randf() * 1.0f) + 2.0f;		//(2s-3s)
+#else
 	consecutive = new bool[10] {false, false, false, false, false, true, false, false, false, true};
 	spawnTimes = new float[10] {3.5f, 3.3f, 0.7f, 1.5f, 2.8f, 0.0f, 2.0f, 1.0f, 3.3f, 0.0f };
+#endif
 
 	minSpawnTime = 2;
 	maxSpawnTime = 5;
@@ -125,7 +140,7 @@ void DropsSpawner::_process(double delta)
 	}
 
 	checkDropsCounter += delta;
-	if (checkDropsCounter > 1.0f)
+	if (checkDropsCounter > 0.5f)
 	{
 		CheckIfDropsAreBelowGround();
 		checkDropsCounter = 0.0f;
@@ -134,7 +149,9 @@ void DropsSpawner::_process(double delta)
 
 void DropsSpawner::SpawnDrops()
 {
-	//UtilityFunctions::print("Spawner Called", dropsContainer->get_child_count());
+#ifdef DEBUG_BLOCK
+	UtilityFunctions::print("Spawner Called", dropsContainer->get_child_count());
+#endif
 
 	/*if (dropsSpawned[dropCalled])
 		return;*/
@@ -145,21 +162,33 @@ void DropsSpawner::SpawnDrops()
 			if (!dropsEnableStatus[i])
 			{
 				dropToCall = i;
+#ifdef DEBUG_BLOCK
 				UtilityFunctions::print("Available Drop At : ", i);
+#endif
 				break;
 			}
 		}
 	}
 
 	if (drops[dropToCall] == NULL)
-		UtilityFunctions::print("Drop is null");/**/
+		UtilityFunctions::print("Error!! Drop is null");/**/
 
+#ifdef RANDOM_POS
 	int randPosX = (UtilityFunctions::randf() * 620) - 310;
 	Vector2 pos = Vector2(randPosX, 0);
+#else
+	int randSpawnArrIndex = UtilityFunctions::randf() * 4;
+	Vector2 pos = dropsSpawnPos[randSpawnArrIndex];
+#endif // RANDOM_POS
 
+	//Enable Rigidbody
 	RigidBody2D* dropRB = Object::cast_to<RigidBody2D>(drops[dropToCall]);
 	dropRB->call_deferred("set_freeze_enabled", false);
 	//dropRB->set_freeze_enabled(false);
+
+	//Play Start Animation
+	AnimationPlayer* dropAnimation = Object::cast_to<AnimationPlayer>(drops[dropToCall]->get_child(2));
+	dropAnimation->play("Grow_Drop");
 
 	dropsContainer->add_child(drops[dropToCall]);
 	//dropsContainer->call_deferred("add_child", drops[dropToCall]);
@@ -179,11 +208,15 @@ void DropsSpawner::SpawnDrops()
 		if (dropToCall > 9)
 		{
 			initialSpawnsDone = true;
-			//UtilityFunctions::print("initialSpawnsDone : ", initialSpawnsDone);
+#ifdef DEBUG_BLOCK
+			UtilityFunctions::print("initialSpawnsDone : ", initialSpawnsDone);
+#endif
 		}
 	}
 
-	//UtilityFunctions::print("Drops Added", dropsContainer->get_child_count());
+#ifdef DEBUG_BLOCK
+	UtilityFunctions::print("Drops Added", dropsContainer->get_child_count());
+#endif
 }
 
 void DropsSpawner::DisableDrop(unsigned short dropID, Node2D* drop)
@@ -213,20 +246,29 @@ void DropsSpawner::DisableDrop(unsigned short dropID, Node2D* drop)
 	dropsEnableStatus[dropID] = false;
 	dropsSpawned--;
 
-	//UtilityFunctions::print("Drops Remove At : ", dropID);
+#ifdef DEBUG_BLOCK
+	UtilityFunctions::print("Drops Remove At : ", dropID);
+#endif
 }
 
 void DropsSpawner::CheckIfDropsAreBelowGround()
 {
-	//UtilityFunctions::print("Position 0 Y : ", drops[0]->get_position().y);
+#ifdef DEBUG_BLOCK
+	UtilityFunctions::print("Position 0 Y : ", drops[0]->get_position().y);
+#endif
 
-	//UtilityFunctions::print("Checking if drops are above ground");
+#ifdef DEBUG_BLOCK
+	UtilityFunctions::print("Checking if drops are above ground");
+#endif
 	for (int i = 0; i < 10; i++)
 		if (dropsEnableStatus[i])
 			if (drops[i]->get_position().y > 1200.0f)
 			{
 				DisableDrop(i, drops[i]);
+				emit_signal("drop_missed", "Drop Missed");
+#ifdef DEBUG_BLOCK
 				UtilityFunctions::print("Below Ground, Drops Remove At : ", i);
+#endif
 			}
 }
 
@@ -238,7 +280,10 @@ int DropsSpawner::GetMaxSpawnTime() { return maxSpawnTime; }
 void DropsSpawner::SetMaxSpawnTime(int spawnTime) { maxSpawnTime = spawnTime; }
 
 PackedVector2Array DropsSpawner::GetDropSpawnPos1() { return dropsSpawnPos; }
-void DropsSpawner::SetDropSpawnPos1(PackedVector2Array dropsSpawnPos) { dropsSpawnPos = dropsSpawnPos; }
+void DropsSpawner::SetDropSpawnPos1(PackedVector2Array _dropsSpawnPos) { dropsSpawnPos = _dropsSpawnPos; }
+
+bool DropsSpawner::GetActivateSpawner() { return activateSpawner; }
+void DropsSpawner::SetActivateSpawner(bool status) { activateSpawner = status; }
 
 //RigidBody2D Test::GetPlayerRB() { return playerRb; }
 //void Test::SetPlayerRB(RigidBody2D rigidBody) { get_node<RigidBody2D>("PlayerRB_2D"); }			//RigidBody2D rigidBody
@@ -254,9 +299,15 @@ void DropsSpawner::_bind_methods()
 	ClassDB::bind_method(D_METHOD("GetMaxSpawnTime"), &GetMaxSpawnTime);
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "maxSpawnTime"), "SetMaxSpawnTime", "GetMaxSpawnTime");
 
-	ClassDB::bind_method(D_METHOD("SetDropSpawnPos1", "spawnPos"), &SetDropSpawnPos1);
+	ClassDB::bind_method(D_METHOD("SetDropSpawnPos1", "_dropsSpawnPos"), &SetDropSpawnPos1);
 	ClassDB::bind_method(D_METHOD("GetDropSpawnPos1"), &GetDropSpawnPos1);
 	ADD_PROPERTY(PropertyInfo(Variant::PACKED_VECTOR2_ARRAY, "dropsSpawnPos"), "SetDropSpawnPos1", "GetDropSpawnPos1");
 
+	ClassDB::bind_method(D_METHOD("SetActivateSpawner", "status"), &SetActivateSpawner);
+	ClassDB::bind_method(D_METHOD("GetActivateSpawner"), &GetActivateSpawner);
+	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "activateSpawner"), "SetActivateSpawner", "GetActivateSpawner");
+
 	ClassDB::bind_method(D_METHOD("SpawnDrops"), &SpawnDrops);
+
+	ADD_SIGNAL(MethodInfo("drop_missed", PropertyInfo(Variant::STRING, "Message")));
 }

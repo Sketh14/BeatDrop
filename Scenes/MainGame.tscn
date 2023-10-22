@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8wfcwg70dpgg"]
+[gd_scene load_steps=12 format=3 uid="uid://b8wfcwg70dpgg"]
 
 [ext_resource type="Texture2D" uid="uid://5g6y71nf01s" path="res://Sprites/Gameplay/Bucket_Empty.png" id="1_r17v5"]
 [ext_resource type="AudioStream" uid="uid://cnhbcwtsp21k" path="res://Audio/SFX/Drop_0.wav" id="2_74xr0"]
 [ext_resource type="Texture2D" uid="uid://bj6usrsbf4kdv" path="res://Sprites/Environment/White_block.png" id="4_we4y5"]
 [ext_resource type="PackedScene" uid="uid://diy0x7kde3lfe" path="res://Prefabs/Rain_drop.res" id="5_py107"]
-[ext_resource type="Texture2D" uid="uid://daibpwd6do4ni" path="res://Sprites/Gameplay/Tap_Pillar.png" id="5_rcmii"]
-[ext_resource type="AudioStream" uid="uid://uspr21tqxcqg" path="res://Audio/BGM/catch.mp3" id="6_uts5l"]
-[ext_resource type="PackedScene" uid="uid://djv4uqx7v8f27" path="res://Scenes/BG_1.tscn" id="8_sumqy"]
-[ext_resource type="Texture2D" uid="uid://2x3r0lvq3y0c" path="res://Sprites/UI_BG/Tap_1.png" id="12_8bxnn"]
+[ext_resource type="Script" path="res://Scripts/MainGameUI_Controller.gd" id="6_0ypig"]
+[ext_resource type="PackedScene" uid="uid://bqfxbfptxd3yt" path="res://Scenes/BG2/BG_2.tscn" id="6_8bohd"]
+[ext_resource type="AudioStream" uid="uid://1x20kjdsmiun" path="res://Audio/BGM/catch.mp3" id="7_p5qpq"]
+[ext_resource type="StyleBox" uid="uid://chey7xqs2jk3h" path="res://ButtonTHeme/Button_UI.tres" id="8_ichxj"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="9_qwvku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogkqg"]
 
@@ -15,6 +16,213 @@
 size = Vector2(47.33, 44.3349)
 
 [node name="Main" type="Node2D"]
+
+[node name="MainGAmeUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("localGameManager", "mainGAmeUI", "pauseBt", "pausePanel", "gameOverPanel", "totalScore")]
+script = ExtResource("6_0ypig")
+localGameManager = NodePath("../GameManager")
+mainGAmeUI = NodePath(".")
+pauseBt = NodePath("MainGameUI_Control/PauseButton")
+pausePanel = NodePath("MainGameUI_Control/PausePanel")
+gameOverPanel = NodePath("MainGameUI_Control/GameOverPanel")
+totalScore = NodePath("MainGameUI_Control/GameOverPanel/TotalScoreLabel")
+
+[node name="MainGameUI_Control" type="Control" parent="MainGAmeUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrentScoreLabel" type="Label" parent="MainGAmeUI/MainGameUI_Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_right = 95.0
+offset_bottom = 53.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+text = "SCORE :"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseButton" type="Button" parent="MainGAmeUI/MainGameUI_Control"]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 90.0
+offset_bottom = 79.0
+
+[node name="PauseLeft" type="TextureRect" parent="MainGAmeUI/MainGameUI_Control/PauseButton"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 24.0
+grow_vertical = 2
+texture = ExtResource("4_we4y5")
+expand_mode = 1
+
+[node name="PauseRight" type="TextureRect" parent="MainGAmeUI/MainGameUI_Control/PauseButton"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_right = -1.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_we4y5")
+expand_mode = 1
+
+[node name="PausePanel" type="Panel" parent="MainGAmeUI/MainGameUI_Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -265.0
+offset_right = 265.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="MainGAmeUI/MainGameUI_Control/PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.5
+offset_top = -120.0
+offset_right = 95.5
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("8_ichxj")
+
+[node name="Label" type="Label" parent="MainGAmeUI/MainGameUI_Control/PausePanel/ResumeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 35
+text = "RESUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="MainGAmeUI/MainGameUI_Control/PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.5
+offset_top = 60.0
+offset_right = 95.5
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("8_ichxj")
+
+[node name="Label" type="Label" parent="MainGAmeUI/MainGameUI_Control/PausePanel/MainMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -13
+theme_override_font_sizes/font_size = 35
+text = "MAIN 
+MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverPanel" type="Panel" parent="MainGAmeUI/MainGameUI_Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -265.0
+offset_right = 265.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuButton" type="Button" parent="MainGAmeUI/MainGameUI_Control/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.5
+offset_top = 60.0
+offset_right = 95.5
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("8_ichxj")
+
+[node name="Label" type="Label" parent="MainGAmeUI/MainGameUI_Control/GameOverPanel/MainMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -13
+theme_override_font_sizes/font_size = 35
+text = "MAIN 
+MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="MainGAmeUI/MainGameUI_Control/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.5
+offset_top = 100.0
+offset_right = 217.5
+offset_bottom = 208.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 76
+text = "GAME OVER"
+
+[node name="TotalScoreLabel" type="Label" parent="MainGAmeUI/MainGameUI_Control/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.5
+offset_top = 173.0
+offset_right = 217.5
+offset_bottom = 281.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 44
+text = "SCORE : "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Player" type="Area2D" parent="."]
 position = Vector2(407, 1244)
@@ -111,72 +319,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LeftBarrier/StaticBody2D"]
 shape = SubResource("RectangleShape2D_5f1br")
 
-[node name="Taps_Pillar" type="Node" parent="Environment"]
-
-[node name="Pillar_1" type="Sprite2D" parent="Environment/Taps_Pillar"]
-z_index = -1
-position = Vector2(54, 1222)
-scale = Vector2(1, 1.37045)
-texture = ExtResource("5_rcmii")
-flip_h = true
-
-[node name="Tap_1" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_1"]
-position = Vector2(62, -190)
-rotation = -0.139626
-scale = Vector2(0.109023, 0.0795527)
-texture = ExtResource("12_8bxnn")
-flip_h = true
-
-[node name="Pillar_2" type="Sprite2D" parent="Environment/Taps_Pillar"]
-z_index = -1
-position = Vector2(197, 1020)
-scale = Vector2(1, 1.37045)
-texture = ExtResource("5_rcmii")
-flip_h = true
-
-[node name="Tap_2" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_2"]
-position = Vector2(62, -190)
-rotation = -0.139626
-scale = Vector2(0.109023, 0.0795527)
-texture = ExtResource("12_8bxnn")
-flip_h = true
-
-[node name="Pillar_3" type="Sprite2D" parent="Environment/Taps_Pillar"]
-z_index = -1
-position = Vector2(360, 1222)
-scale = Vector2(1, 1.37045)
-texture = ExtResource("5_rcmii")
-
-[node name="Tap_3" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_3"]
-position = Vector2(-62, -190)
-rotation = 0.139626
-scale = Vector2(0.109023, 0.0795527)
-texture = ExtResource("12_8bxnn")
-
-[node name="Pillar_4" type="Sprite2D" parent="Environment/Taps_Pillar"]
-z_index = -1
-position = Vector2(516, 1022)
-scale = Vector2(1, 1.37045)
-texture = ExtResource("5_rcmii")
-
-[node name="Tap_4" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_4"]
-position = Vector2(-62, -190)
-rotation = 0.139626
-scale = Vector2(0.109023, 0.0795527)
-texture = ExtResource("12_8bxnn")
-
-[node name="Pillar_5" type="Sprite2D" parent="Environment/Taps_Pillar"]
-z_index = -1
-position = Vector2(663, 1222)
-scale = Vector2(1, 1.37045)
-texture = ExtResource("5_rcmii")
-
-[node name="Tap_5" type="Sprite2D" parent="Environment/Taps_Pillar/Pillar_5"]
-position = Vector2(-62, -190)
-rotation = 0.139626
-scale = Vector2(0.109023, 0.0795527)
-texture = ExtResource("12_8bxnn")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(360, 640)
 
@@ -184,7 +326,7 @@ position = Vector2(360, 640)
 position = Vector2(360, 240)
 
 [node name="RainDrop" parent="WaterDropsContainer" instance=ExtResource("5_py107")]
-position = Vector2(-322, 2)
+position = Vector2(309, 789)
 
 [node name="RainDrop2" parent="WaterDropsContainer" instance=ExtResource("5_py107")]
 position = Vector2(-265, 0)
@@ -216,15 +358,24 @@ position = Vector2(329, 0)
 [node name="DropsSpawner" type="DropsSpawner" parent="WaterDropsContainer"]
 minSpawnTime = 2
 maxSpawnTime = 5
+dropsSpawnPos = PackedVector2Array(-322, 388, -10, -25, 150, -120, 310, 790)
+activateSpawner = true
 
 [node name="SoundManager" type="Node" parent="."]
 
 [node name="BackGroundTheme" type="AudioStreamPlayer" parent="SoundManager"]
-stream = ExtResource("6_uts5l")
+stream = ExtResource("7_p5qpq")
 autoplay = true
 
-[node name="BackGround" parent="." node_paths=PackedStringArray("fg_Clouds", "bg_Clouds") instance=ExtResource("8_sumqy")]
-fg_Clouds = [null, null]
-bg_Clouds = [null, null]
+[node name="BackGround" parent="." instance=ExtResource("6_8bohd")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("currentScore")]
+script = ExtResource("9_qwvku")
+currentScore = NodePath("../MainGAmeUI/MainGameUI_Control/CurrentScoreLabel")
+
+[connection signal="pressed" from="MainGAmeUI/MainGameUI_Control/PauseButton" to="MainGAmeUI" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MainGAmeUI/MainGameUI_Control/PausePanel/ResumeButton" to="MainGAmeUI" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MainGAmeUI/MainGameUI_Control/PausePanel/MainMenuButton" to="MainGAmeUI" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MainGAmeUI/MainGameUI_Control/GameOverPanel/MainMenuButton" to="MainGAmeUI" method="_on_main_menu_button_pressed"]
+[connection signal="drop_collected" from="Player/Test" to="GameManager" method="_on_drop_collected"]
+[connection signal="drop_missed" from="WaterDropsContainer/DropsSpawner" to="MainGAmeUI" method="_on_game_over"]
