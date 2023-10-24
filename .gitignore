@@ -1,8 +1,14 @@
 .nuget/
 .vscode/
 /gd_extension/.vs/
+/gd_extension/godot-cpp/
+/android/
 .DS_Store
 .python-version
+
+#Not include library files
+*.dll
+*.so
 
 # Godot 4+ specific ignores
 .godot/

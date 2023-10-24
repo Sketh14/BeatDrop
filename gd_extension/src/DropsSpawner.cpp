@@ -291,23 +291,23 @@ void DropsSpawner::SetActivateSpawner(bool status) { activateSpawner = status; }
 
 void DropsSpawner::_bind_methods()
 {
-	ClassDB::bind_method(D_METHOD("SetMinSpawnTime", "minSpawnTime"), &SetMinSpawnTime);
-	ClassDB::bind_method(D_METHOD("GetMinSpawnTime"), &GetMinSpawnTime);
+	ClassDB::bind_method(D_METHOD("SetMinSpawnTime", "minSpawnTime"), &DropsSpawner::SetMinSpawnTime);
+	ClassDB::bind_method(D_METHOD("GetMinSpawnTime"), &DropsSpawner::GetMinSpawnTime);
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "minSpawnTime"), "SetMinSpawnTime", "GetMinSpawnTime");
 
-	ClassDB::bind_method(D_METHOD("SetMaxSpawnTime", "maxSpawnTime"), &SetMaxSpawnTime);
-	ClassDB::bind_method(D_METHOD("GetMaxSpawnTime"), &GetMaxSpawnTime);
+	ClassDB::bind_method(D_METHOD("SetMaxSpawnTime", "maxSpawnTime"), &DropsSpawner::SetMaxSpawnTime);
+	ClassDB::bind_method(D_METHOD("GetMaxSpawnTime"), &DropsSpawner::GetMaxSpawnTime);
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "maxSpawnTime"), "SetMaxSpawnTime", "GetMaxSpawnTime");
 
-	ClassDB::bind_method(D_METHOD("SetDropSpawnPos1", "_dropsSpawnPos"), &SetDropSpawnPos1);
-	ClassDB::bind_method(D_METHOD("GetDropSpawnPos1"), &GetDropSpawnPos1);
+	ClassDB::bind_method(D_METHOD("SetDropSpawnPos1", "_dropsSpawnPos"), &DropsSpawner::SetDropSpawnPos1);
+	ClassDB::bind_method(D_METHOD("GetDropSpawnPos1"), &DropsSpawner::GetDropSpawnPos1);
 	ADD_PROPERTY(PropertyInfo(Variant::PACKED_VECTOR2_ARRAY, "dropsSpawnPos"), "SetDropSpawnPos1", "GetDropSpawnPos1");
 
-	ClassDB::bind_method(D_METHOD("SetActivateSpawner", "status"), &SetActivateSpawner);
-	ClassDB::bind_method(D_METHOD("GetActivateSpawner"), &GetActivateSpawner);
+	ClassDB::bind_method(D_METHOD("SetActivateSpawner", "status"), &DropsSpawner::SetActivateSpawner);
+	ClassDB::bind_method(D_METHOD("GetActivateSpawner"), &DropsSpawner::GetActivateSpawner);
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "activateSpawner"), "SetActivateSpawner", "GetActivateSpawner");
 
-	ClassDB::bind_method(D_METHOD("SpawnDrops"), &SpawnDrops);
+	ClassDB::bind_method(D_METHOD("SpawnDrops"), &DropsSpawner::SpawnDrops);
 
 	ADD_SIGNAL(MethodInfo("drop_missed", PropertyInfo(Variant::STRING, "Message")));
 }

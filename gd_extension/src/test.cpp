@@ -310,12 +310,12 @@ void Test::SetPlayMode(bool toggleVal) { playMode = toggleVal;}
 
 void Test::_bind_methods()
 {
-	ClassDB::bind_method(D_METHOD("SetMoveForceMult" , "speed"), &SetMoveForceMult);
-	ClassDB::bind_method(D_METHOD("GetMoveForceMult"), &GetMoveForceMult);
+	ClassDB::bind_method(D_METHOD("SetMoveForceMult" , "speed"), &Test::SetMoveForceMult);
+	ClassDB::bind_method(D_METHOD("GetMoveForceMult"), &Test::GetMoveForceMult);
 	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "moveForceMult"), "SetMoveForceMult", "GetMoveForceMult");
 
-	ClassDB::bind_method(D_METHOD("SetTestTex", "tex"), &SetTestTex);
-	ClassDB::bind_method(D_METHOD("GetTestTex"), &GetTestTex);
+	ClassDB::bind_method(D_METHOD("SetTestTex", "tex"), &Test::SetTestTex);
+	ClassDB::bind_method(D_METHOD("GetTestTex"), &Test::GetTestTex);
 	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "_testTex", PROPERTY_HINT_RESOURCE_TYPE, "Texture2D"), "SetTestTex", "GetTestTex");
 
 	//ClassDB::bind_method(D_METHOD("SetPlayerRB", "rigidBody"), &SetPlayerRB);
@@ -323,12 +323,12 @@ void Test::_bind_methods()
 	//ClassDB::bind_method(D_METHOD("GetPlayerRB"), &GetPlayerRB);
 	//ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "playerRB", PROPERTY_HINT_RESOURCE_TYPE, "RigidBody2D"), "SetPlayerRB", "GetPlayerRB");
 
-	ClassDB::bind_method(D_METHOD("SetPlayMode", "toggleVal"), &SetPlayMode);
-	ClassDB::bind_method(D_METHOD("GetPlayMode"), &GetPlayMode);
+	ClassDB::bind_method(D_METHOD("SetPlayMode", "toggleVal"), &Test::SetPlayMode);
+	ClassDB::bind_method(D_METHOD("GetPlayMode"), &Test::GetPlayMode);
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "enablePlayMode"), "SetPlayMode", "GetPlayMode");
 
-	ClassDB::bind_method(D_METHOD("OnBodyEntered", "body"), &OnBodyEntered);
-	ClassDB::bind_method(D_METHOD("OnTappingOnPlayer"), &OnTappingOnPlayer);
+	ClassDB::bind_method(D_METHOD("OnBodyEntered", "body"), &Test::OnBodyEntered);
+	ClassDB::bind_method(D_METHOD("OnTappingOnPlayer"), &Test::OnTappingOnPlayer);
 
 	ADD_SIGNAL(MethodInfo("drop_collected", PropertyInfo(Variant::STRING, "Message")));
 }

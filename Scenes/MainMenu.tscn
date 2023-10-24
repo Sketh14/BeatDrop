@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3ajefh7urhaq"]
+[gd_scene load_steps=17 format=3 uid="uid://d3ajefh7urhaq"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenuController.gd" id="1_d14gf"]
 [ext_resource type="Texture2D" uid="uid://bj6usrsbf4kdv" path="res://Sprites/Environment/White_block.png" id="1_q4cjw"]
@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://ublvfigv5fpn" path="res://Sprites/UI_BG/Drop_1.png" id="4_iscpa"]
 [ext_resource type="Texture2D" uid="uid://2x3r0lvq3y0c" path="res://Sprites/UI_BG/Tap_1.png" id="5_hejii"]
 [ext_resource type="Texture2D" uid="uid://2sthyf338uwf" path="res://Sprites/Environment/BG_2/Tap_2.png" id="6_1umd3"]
+[ext_resource type="FontFile" uid="uid://hm8u6ol35qwv" path="res://Font/BadComic-Regular.ttf" id="11_g1u0c"]
 [ext_resource type="StyleBox" uid="uid://chey7xqs2jk3h" path="res://ButtonTHeme/Button_UI.tres" id="11_wnmbn"]
+[ext_resource type="AudioStream" uid="uid://drmn7gkocelb0" path="res://Audio/BGM/Main Menu .mp3" id="14_tg443"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20ux2"]
 bg_color = Color(1, 0, 0, 1)
@@ -57,7 +59,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_q4cjw")
 
-[node name="Bricks_Pattern_a_1" type="Control" parent="Control"]
+[node name="Bricks_Control" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bricks_Pattern_a_1" type="Control" parent="Control/Bricks_Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -71,7 +81,7 @@ offset_bottom = -469.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_a_1"]
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_1"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -88,7 +98,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_a_1"]
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_1"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -105,7 +115,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_a_1"]
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_1"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -122,7 +132,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Bricks_Pattern_a_2" type="Control" parent="Control"]
+[node name="Bricks_Pattern_a_2" type="Control" parent="Control/Bricks_Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -136,7 +146,7 @@ offset_bottom = -466.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_a_2"]
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_2"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -153,7 +163,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_a_2"]
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_2"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -170,7 +180,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_a_2"]
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_2"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -187,7 +197,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Bricks_Pattern_a_3" type="Control" parent="Control"]
+[node name="Bricks_Pattern_a_3" type="Control" parent="Control/Bricks_Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -201,7 +211,7 @@ offset_bottom = -189.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_a_3"]
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_3"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -218,7 +228,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_a_3"]
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_3"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -235,7 +245,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_a_3"]
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_3"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -252,7 +262,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Bricks_Pattern_a_4" type="Control" parent="Control"]
+[node name="Bricks_Pattern_a_4" type="Control" parent="Control/Bricks_Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -266,7 +276,7 @@ offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_a_4"]
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_4"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -283,7 +293,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_a_4"]
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_4"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -300,7 +310,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_a_4"]
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_a_4"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -317,7 +327,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Bricks_Pattern_b_1" type="Control" parent="Control"]
+[node name="Bricks_Pattern_b_1" type="Control" parent="Control/Bricks_Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -331,7 +341,7 @@ offset_bottom = -197.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_b_1"]
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_1"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -348,7 +358,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_b_1"]
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_1"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -365,7 +375,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_b_1"]
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_1"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -382,7 +392,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Bricks_Pattern_b_2" type="Control" parent="Control"]
+[node name="Bricks_Pattern_b_2" type="Control" parent="Control/Bricks_Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -396,7 +406,7 @@ offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_b_2"]
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_2"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -413,7 +423,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_b_2"]
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_2"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -430,7 +440,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_b_2"]
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_2"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -447,7 +457,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Bricks_Pattern_b_3" type="Control" parent="Control"]
+[node name="Bricks_Pattern_b_3" type="Control" parent="Control/Bricks_Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -461,7 +471,7 @@ offset_bottom = -439.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_b_3"]
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_3"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -478,7 +488,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_b_3"]
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_3"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -495,7 +505,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_b_3"]
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_3"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -512,7 +522,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Bricks_Pattern_b_4" type="Control" parent="Control"]
+[node name="Bricks_Pattern_b_4" type="Control" parent="Control/Bricks_Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -526,7 +536,7 @@ offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Pattern_b_4"]
+[node name="Brick_1" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_4"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -543,7 +553,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Pattern_b_4"]
+[node name="Brick_2" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_4"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -560,7 +570,7 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Pattern_b_4"]
+[node name="Brick_3" type="TextureRect" parent="Control/Bricks_Control/Bricks_Pattern_b_4"]
 modulate = Color(0.607843, 0.219608, 0.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -577,7 +587,15 @@ texture = ExtResource("2_ene8c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="BG_Bent_Pipe" type="TextureRect" parent="Control"]
+[node name="BG_Pipes_Control" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG_Bent_Pipe" type="TextureRect" parent="Control/BG_Pipes_Control"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -594,7 +612,7 @@ texture = ExtResource("2_jnwm5")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="BG_Straight_Pipe2_H1" type="TextureRect" parent="Control"]
+[node name="BG_Straight_Pipe2_H1" type="TextureRect" parent="Control/BG_Pipes_Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -609,7 +627,7 @@ rotation = 2.02458
 texture = ExtResource("2_ln2bc")
 expand_mode = 1
 
-[node name="BG_Straight_Pipe3_H2" type="TextureRect" parent="Control"]
+[node name="BG_Straight_Pipe3_H2" type="TextureRect" parent="Control/BG_Pipes_Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -624,7 +642,7 @@ rotation = 2.02458
 texture = ExtResource("2_ln2bc")
 expand_mode = 1
 
-[node name="BG_Straight_Pipe_V1" type="TextureRect" parent="Control"]
+[node name="BG_Straight_Pipe_V1" type="TextureRect" parent="Control/BG_Pipes_Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -740,6 +758,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_g1u0c")
 theme_override_font_sizes/font_size = 40
 text = "START"
 horizontal_alignment = 1
@@ -761,6 +780,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_g1u0c")
 theme_override_font_sizes/font_size = 29
 text = "CREDITS"
 horizontal_alignment = 1
@@ -789,6 +809,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_g1u0c")
 theme_override_font_sizes/font_size = 40
 text = "EXIT"
 horizontal_alignment = 1
@@ -844,7 +865,8 @@ offset_right = 217.5
 offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("11_g1u0c")
 theme_override_font_sizes/font_size = 65
 text = "MADE BY"
 horizontal_alignment = 1
@@ -879,6 +901,7 @@ offset_bottom = 36.0001
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_g1u0c")
 theme_override_font_sizes/font_size = 44
 text = "SKETH"
 horizontal_alignment = 1
@@ -897,7 +920,8 @@ offset_right = 218.0
 offset_bottom = 137.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("11_g1u0c")
 theme_override_font_sizes/font_size = 65
 text = "AUDIO DESIGN"
 horizontal_alignment = 1
@@ -932,6 +956,7 @@ offset_bottom = 36.0001
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_g1u0c")
 theme_override_font_sizes/font_size = 44
 text = "MONOBOX"
 horizontal_alignment = 1
@@ -944,6 +969,12 @@ bucket = NodePath("../Control/BG_Bucket")
 speedMult = 0.5
 creditsBt = NodePath("../Control/CreditsBt")
 creditsPanel = NodePath("../Control/CreditsPanel")
+
+[node name="SoundManager" type="Node" parent="."]
+
+[node name="BackGroundTheme" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource("14_tg443")
+autoplay = true
 
 [connection signal="pressed" from="Control/StartBt" to="MainMenuController" method="_on_start_bt_pressed"]
 [connection signal="pressed" from="Control/CreditsBt" to="MainMenuController" method="_on_credits_bt_pressed"]

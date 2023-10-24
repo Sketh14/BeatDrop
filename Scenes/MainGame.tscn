@@ -1,25 +1,31 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8wfcwg70dpgg"]
+[gd_scene load_steps=15 format=3 uid="uid://b8wfcwg70dpgg"]
 
 [ext_resource type="Texture2D" uid="uid://5g6y71nf01s" path="res://Sprites/Gameplay/Bucket_Empty.png" id="1_r17v5"]
 [ext_resource type="AudioStream" uid="uid://cnhbcwtsp21k" path="res://Audio/SFX/Drop_0.wav" id="2_74xr0"]
+[ext_resource type="FontFile" uid="uid://hm8u6ol35qwv" path="res://Font/BadComic-Regular.ttf" id="2_jrxnv"]
 [ext_resource type="Texture2D" uid="uid://bj6usrsbf4kdv" path="res://Sprites/Environment/White_block.png" id="4_we4y5"]
 [ext_resource type="PackedScene" uid="uid://diy0x7kde3lfe" path="res://Prefabs/Rain_drop.res" id="5_py107"]
 [ext_resource type="Script" path="res://Scripts/MainGameUI_Controller.gd" id="6_0ypig"]
 [ext_resource type="PackedScene" uid="uid://bqfxbfptxd3yt" path="res://Scenes/BG2/BG_2.tscn" id="6_8bohd"]
-[ext_resource type="AudioStream" uid="uid://1x20kjdsmiun" path="res://Audio/BGM/catch.mp3" id="7_p5qpq"]
+[ext_resource type="AudioStream" uid="uid://dm3uf164t8113" path="res://Audio/BGM/catch_new_2.mp3" id="8_42efk"]
 [ext_resource type="StyleBox" uid="uid://chey7xqs2jk3h" path="res://ButtonTHeme/Button_UI.tres" id="8_ichxj"]
+[ext_resource type="AudioStream" uid="uid://nadaf3wunoy2" path="res://Audio/BGM/game over.mp3" id="9_ilvqm"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="9_qwvku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogkqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05b0i"]
+size = Vector2(40, 5.71428)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f1br"]
 size = Vector2(47.33, 44.3349)
 
 [node name="Main" type="Node2D"]
 
-[node name="MainGAmeUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("localGameManager", "mainGAmeUI", "pauseBt", "pausePanel", "gameOverPanel", "totalScore")]
+[node name="MainGAmeUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("localGameManager", "localSoundManager", "mainGAmeUI", "pauseBt", "pausePanel", "gameOverPanel", "totalScore")]
 script = ExtResource("6_0ypig")
 localGameManager = NodePath("../GameManager")
+localSoundManager = NodePath("../SoundManager")
 mainGAmeUI = NodePath(".")
 pauseBt = NodePath("MainGameUI_Control/PauseButton")
 pausePanel = NodePath("MainGameUI_Control/PausePanel")
@@ -43,6 +49,7 @@ offset_left = -95.0
 offset_right = 95.0
 offset_bottom = 53.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_jrxnv")
 theme_override_font_sizes/font_size = 36
 text = "SCORE :"
 horizontal_alignment = 1
@@ -52,14 +59,17 @@ vertical_alignment = 1
 layout_mode = 1
 offset_left = 16.0
 offset_top = 14.0
-offset_right = 90.0
+offset_right = 82.0
 offset_bottom = 79.0
 
 [node name="PauseLeft" type="TextureRect" parent="MainGAmeUI/MainGameUI_Control/PauseButton"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 24.0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 28.0
+offset_bottom = -10.0
 grow_vertical = 2
 texture = ExtResource("4_we4y5")
 expand_mode = 1
@@ -71,7 +81,9 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -28.0
-offset_right = -1.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("4_we4y5")
@@ -115,6 +127,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jrxnv")
 theme_override_font_sizes/font_size = 35
 text = "RESUME"
 horizontal_alignment = 1
@@ -144,6 +157,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -13
+theme_override_fonts/font = ExtResource("2_jrxnv")
 theme_override_font_sizes/font_size = 35
 text = "MAIN 
 MENU"
@@ -189,6 +203,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -13
+theme_override_fonts/font = ExtResource("2_jrxnv")
 theme_override_font_sizes/font_size = 35
 text = "MAIN 
 MENU"
@@ -205,6 +220,7 @@ offset_top = 100.0
 offset_right = 217.5
 offset_bottom = 208.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_jrxnv")
 theme_override_font_sizes/font_size = 76
 text = "GAME OVER"
 
@@ -219,6 +235,7 @@ offset_right = 217.5
 offset_bottom = 281.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jrxnv")
 theme_override_font_sizes/font_size = 44
 text = "SCORE : "
 horizontal_alignment = 1
@@ -236,12 +253,13 @@ scale = Vector2(2.4, 2.2)
 shape = SubResource("RectangleShape2D_ogkqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, -2.16754)
-shape = SubResource("RectangleShape2D_5f1br")
+position = Vector2(0, -17.1429)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_05b0i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/CollisionShape2D"]
 z_index = 1
-position = Vector2(0, 2.45325)
+position = Vector2(0, 17.4286)
 scale = Vector2(0.094, 0.094)
 texture = ExtResource("1_r17v5")
 
@@ -364,8 +382,11 @@ activateSpawner = true
 [node name="SoundManager" type="Node" parent="."]
 
 [node name="BackGroundTheme" type="AudioStreamPlayer" parent="SoundManager"]
-stream = ExtResource("7_p5qpq")
+stream = ExtResource("8_42efk")
 autoplay = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource("9_ilvqm")
 
 [node name="BackGround" parent="." instance=ExtResource("6_8bohd")]
 

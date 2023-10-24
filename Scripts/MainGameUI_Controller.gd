@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var pauseStatus
 @export var localGameManager : Node
+@export var localSoundManager : Node
 @export var mainGAmeUI : CanvasLayer
 #@export var soundManager : Node
 @export var pauseBt : Button
@@ -27,11 +28,18 @@ func _on_pause_button_pressed():
 #	print("pauseStatus : ", pauseStatus)
 
 func _on_main_menu_button_pressed():
+	var sfxPlayer = localSoundManager.get_child(1) as AudioStreamPlayer
+	sfxPlayer.stop()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
 func _on_game_over(_Message):
+	var sfxPlayer = localSoundManager.get_child(1) as AudioStreamPlayer
+	var bgPlayer = localSoundManager.get_child(0) as AudioStreamPlayer
+	sfxPlayer.play(0.0)
+	bgPlayer.stop()
 	totalScore.text = "SCORE : " + str(localGameManager.get("playerScore"))
+	localSoundManager.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	self.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	pauseBt.hide()
 	gameOverPanel.show()

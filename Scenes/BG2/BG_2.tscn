@@ -18,7 +18,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_rwkon")
-steam = [NodePath("Steam"), NodePath("Steam2"), NodePath("Steam3"), NodePath("Steam4"), NodePath("Steam5")]
+steam = [NodePath("Steams_Control/Steam"), NodePath("Steams_Control/Steam2"), NodePath("Steams_Control/Steam3"), NodePath("Steams_Control/Steam4"), NodePath("Steams_Control/Steam5")]
 steamTimeMult = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0])
 
 [node name="Sky" type="TextureRect" parent="Control"]
@@ -54,7 +54,15 @@ texture = ExtResource("3_qhtv6")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Steam" parent="Control" instance=ExtResource("3_k2mw4")]
+[node name="Steams_Control" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Steam" parent="Control/Steams_Control" instance=ExtResource("3_k2mw4")]
 offset_left = 595.0
 offset_top = 527.0
 offset_right = 1092.0
@@ -62,32 +70,32 @@ offset_bottom = 1001.0
 rotation = 1.5708
 scale = Vector2(0.27, 0.27)
 
-[node name="Steam2" parent="Control" instance=ExtResource("3_k2mw4")]
+[node name="Steam2" parent="Control/Steams_Control" instance=ExtResource("3_k2mw4")]
 offset_left = 96.0
 offset_top = -42.0
 offset_right = 593.0
 offset_bottom = 432.0
 scale = Vector2(0.27, 0.27)
 
-[node name="Steam3" parent="Control" instance=ExtResource("3_k2mw4")]
+[node name="Steam3" parent="Control/Steams_Control" instance=ExtResource("3_k2mw4")]
 offset_left = 160.0
 offset_top = 923.0
 offset_right = 657.0
 offset_bottom = 1397.0
 scale = Vector2(0.27, 0.27)
 
-[node name="Steam4" parent="Control" instance=ExtResource("3_k2mw4")]
-offset_left = 340.0
-offset_top = 395.0
-offset_right = 837.0
-offset_bottom = 869.0
-rotation = -1.5708
+[node name="Steam4" parent="Control/Steams_Control" instance=ExtResource("3_k2mw4")]
+offset_left = 363.0
+offset_top = 234.0
+offset_right = 860.0
+offset_bottom = 708.0
+rotation = -0.794125
 scale = Vector2(0.27, 0.27)
 
-[node name="Steam5" parent="Control" instance=ExtResource("3_k2mw4")]
-offset_left = 222.0
-offset_top = 1059.0
-offset_right = 719.0
-offset_bottom = 1533.0
-rotation = -1.5708
+[node name="Steam5" parent="Control/Steams_Control" instance=ExtResource("3_k2mw4")]
+offset_left = 601.0
+offset_top = 1037.0
+offset_right = 1098.0
+offset_bottom = 1511.0
+rotation = 2.20261
 scale = Vector2(0.27, 0.27)
