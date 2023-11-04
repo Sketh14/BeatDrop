@@ -1,14 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqfxbfptxd3yt"]
+[gd_scene load_steps=16 format=3 uid="uid://bqfxbfptxd3yt"]
 
 [ext_resource type="Script" path="res://Scripts/Pipe_BG_Controller.gd" id="1_rwkon"]
 [ext_resource type="Texture2D" uid="uid://ddgrpyducdx7o" path="res://Sprites/Environment/BG_2/Wall.png" id="2_vgsbh"]
+[ext_resource type="Texture2D" uid="uid://8orerpqehu22" path="res://Sprites/Environment/BG_2/PipeLine_BG_g.png" id="3_jup8d"]
 [ext_resource type="PackedScene" uid="uid://bjnyowj7q0e6v" path="res://Scenes/BG2/Steam.tscn" id="3_k2mw4"]
-[ext_resource type="Texture2D" uid="uid://cfom7ryk25htl" path="res://Sprites/Environment/BG_2/PipeLine_BG.png" id="3_qhtv6"]
+[ext_resource type="Texture2D" uid="uid://0u6awrnavbn7" path="res://Sprites/Environment/BG_2/PipeLine_BG.png" id="3_qhtv6"]
+[ext_resource type="Texture2D" uid="uid://caqtqxy6jap8a" path="res://Sprites/Environment/BG_2/Types_e/Handle_278_e.png" id="5_w6vg0"]
+[ext_resource type="Texture2D" uid="uid://bsm1bevqe8d05" path="res://Sprites/Environment/BG_2/Types_e/Gauge_359_e.png" id="6_vmglj"]
+[ext_resource type="Texture2D" uid="uid://csxctjfsd3yg4" path="res://Sprites/Environment/BG_2/Types_e/Gauge_359_Needle_e.png" id="7_1wjfl"]
+[ext_resource type="Texture2D" uid="uid://d1pertd4eap88" path="res://Sprites/Environment/BG_2/Types_e/Lever_312_e.png" id="8_fe4kw"]
+[ext_resource type="Texture2D" uid="uid://bwclky5fhd3vp" path="res://Sprites/Environment/BG_2/Types_e/Gauge_245_e.png" id="8_ocnga"]
+[ext_resource type="Texture2D" uid="uid://xeut28obtsbj" path="res://Sprites/Environment/BG_2/Types_e/Gauge_245_Needle_e.png" id="9_unx70"]
+[ext_resource type="Texture2D" uid="uid://bovift25udnxd" path="res://Sprites/Environment/BG_2/Types_e/Lever_312_Shadow_e.png" id="9_v41ja"]
+[ext_resource type="Texture2D" uid="uid://cluntyhs3a7v" path="res://Sprites/Environment/BG_2/Types_e/Lever_312_Screw_e.png" id="11_0mmrl"]
+[ext_resource type="Animation" uid="uid://dgyblklx5p4t" path="res://Animation/Needle_Flick.anim" id="13_rmph8"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0ql8"]
+_data = {
+"NeedleFlick": ExtResource("13_rmph8")
+}
 
 [node name="BackGround" type="CanvasLayer"]
 layer = -1
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("steam")]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("steam", "lever_312", "handle_278", "gauge_359_Needle_e", "gauge_245_Needle_e", "needleAnimationPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +34,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_rwkon")
 steam = [NodePath("Steams_Control/Steam"), NodePath("Steams_Control/Steam2"), NodePath("Steams_Control/Steam3"), NodePath("Steams_Control/Steam4"), NodePath("Steams_Control/Steam5")]
-steamTimeMult = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0])
+lever_312 = NodePath("Pipeline/Lever_312_e")
+handle_278 = NodePath("Pipeline/Handle_278")
+gauge_359_Needle_e = NodePath("Pipeline/Gauge_359_e/Gauge_359_Needle_e")
+gauge_245_Needle_e = NodePath("Pipeline/Gauge_245_e/Gauge_245_Needle_e")
+needleAnimationPlayer = NodePath("Pipeline/AnimationPlayer")
 
 [node name="Sky" type="TextureRect" parent="Control"]
 layout_mode = 1
@@ -45,7 +64,23 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 3.0
-offset_right = -223.0
+offset_right = -453.0
+offset_bottom = -803.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("3_jup8d")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Pipeline_2_Og" type="TextureRect" parent="Control/Pipeline"]
+visible = false
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_right = -453.0
 offset_bottom = -803.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -53,6 +88,146 @@ scale = Vector2(2.7, 2.7)
 texture = ExtResource("3_qhtv6")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="Handle_278" type="TextureRect" parent="Control/Pipeline"]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 202.0
+offset_top = 777.0
+offset_right = -460.0
+offset_bottom = -493.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+pivot_offset = Vector2(13.5802, 4.88336)
+texture = ExtResource("5_w6vg0")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Gauge_359_e" type="TextureRect" parent="Control/Pipeline"]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 498.0
+offset_top = 273.0
+offset_right = -176.0
+offset_bottom = -957.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+pivot_offset = Vector2(13.5802, 4.88336)
+texture = ExtResource("6_vmglj")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Gauge_359_Needle_e" type="TextureRect" parent="Control/Pipeline/Gauge_359_e"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 21.0
+offset_right = -10.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.335103
+pivot_offset = Vector2(2, 2.1)
+texture = ExtResource("7_1wjfl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Gauge_245_e" type="TextureRect" parent="Control/Pipeline"]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 346.0
+offset_top = 932.0
+offset_right = -322.0
+offset_bottom = -294.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("8_ocnga")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Gauge_245_Needle_e" type="TextureRect" parent="Control/Pipeline/Gauge_245_e"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.7407
+offset_top = 13.3333
+offset_right = -22.2593
+offset_bottom = -28.6667
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.534071
+pivot_offset = Vector2(2.3, 9.46)
+texture = ExtResource("9_unx70")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Lever_312_Shadowe" type="TextureRect" parent="Control/Pipeline"]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = 267.0
+offset_right = -493.0
+offset_bottom = -894.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_v41ja")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Lever_312_Screw" type="TextureRect" parent="Control/Pipeline/Lever_312_Shadowe"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = 37.0
+offset_right = -70.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("11_0mmrl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Lever_312_e" type="TextureRect" parent="Control/Pipeline"]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 102.0
+offset_top = 260.0
+offset_right = -499.0
+offset_bottom = -899.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59.5, 59.5)
+texture = ExtResource("8_fe4kw")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Pipeline"]
+root_node = NodePath("../Gauge_359_e")
+libraries = {
+"": SubResource("AnimationLibrary_v0ql8")
+}
 
 [node name="Steams_Control" type="Control" parent="Control"]
 layout_mode = 1

@@ -1,19 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://djv4uqx7v8f27"]
+[gd_scene load_steps=9 format=3 uid="uid://djv4uqx7v8f27"]
 
 [ext_resource type="Script" path="res://Scripts/Sky_BG_Controller.gd" id="1_wqv4o"]
 [ext_resource type="Texture2D" uid="uid://deerveep1j52y" path="res://Sprites/Environment/BG/1.png" id="2_6075t"]
 [ext_resource type="Texture2D" uid="uid://be8p8ia1r0qt3" path="res://Sprites/Environment/BG/3.png" id="3_tdois"]
 [ext_resource type="Texture2D" uid="uid://ch8txuebnidcw" path="res://Sprites/Environment/BG/2.png" id="4_mddly"]
 [ext_resource type="Texture2D" uid="uid://c0v6dr334x2yl" path="res://Sprites/Environment/BG/4.png" id="5_wxk4w"]
+[ext_resource type="Texture2D" uid="uid://ctjyma5jgf5y4" path="res://Sprites/Environment/BG_2/Pipe_Straight.png" id="6_er2pm"]
+[ext_resource type="Texture2D" uid="uid://c1bsxjngb6wsp" path="res://Sprites/Environment/BG_1/Pipe_Bent_3_b.png" id="7_1d4ie"]
+[ext_resource type="Texture2D" uid="uid://bm84lim2ft4ik" path="res://Sprites/Environment/BG_1/Tap_2.png" id="8_7lrgg"]
 
 [node name="BackGround" type="CanvasLayer" node_paths=PackedStringArray("bg_Streak", "fg_Clouds", "bg_Clouds")]
 layer = -1
 script = ExtResource("1_wqv4o")
-streakSpeedMult = 0.01
 bg_Streak = NodePath("Control/Streak")
 fg_Clouds = [NodePath("Control/FG_Clouds/Fg_Clouds_1"), NodePath("Control/FG_Clouds/Fg_Clouds_2")]
 bg_Clouds = [NodePath("Control/BG_Clouds/Bg_Clouds_1"), NodePath("Control/BG_Clouds/Bg_Clouds_2")]
-moveSpeedMult = Array[float]([10.0, 20.0])
+moveSpeedMult = Array[float]([15.0, 10.0])
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -53,9 +55,16 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_tdois")
 stretch_mode = 2
 
-[node name="BG_Clouds" type="Node" parent="Control"]
+[node name="BG_Clouds" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Bg_Clouds_1" type="TextureRect" parent="Control/BG_Clouds"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -69,6 +78,7 @@ scale = Vector2(2.7, 2.7)
 texture = ExtResource("4_mddly")
 
 [node name="Bg_Clouds_2" type="TextureRect" parent="Control/BG_Clouds"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -81,9 +91,16 @@ grow_vertical = 2
 scale = Vector2(2.7, 2.7)
 texture = ExtResource("4_mddly")
 
-[node name="FG_Clouds" type="Node" parent="Control"]
+[node name="FG_Clouds" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Fg_Clouds_1" type="TextureRect" parent="Control/FG_Clouds"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -96,6 +113,7 @@ scale = Vector2(2.7, 2.7)
 texture = ExtResource("5_wxk4w")
 
 [node name="Fg_Clouds_2" type="TextureRect" parent="Control/FG_Clouds"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -107,3 +125,197 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.7, 2.7)
 texture = ExtResource("5_wxk4w")
+
+[node name="Pipes" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pipe_1" type="TextureRect" parent="Control/Pipes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 658.0
+offset_top = 803.0
+offset_right = -40.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_er2pm")
+expand_mode = 1
+
+[node name="Pipe_Bent" type="TextureRect" parent="Control/Pipes/Pipe_1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -46.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 47)
+texture = ExtResource("7_1d4ie")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Tap_2" type="TextureRect" parent="Control/Pipes/Pipe_1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -75.0
+offset_right = -49.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(88, 41)
+texture = ExtResource("8_7lrgg")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Pipe_2" type="TextureRect" parent="Control/Pipes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 298.0
+offset_top = 617.0
+offset_right = -400.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_er2pm")
+expand_mode = 1
+
+[node name="Pipe_Bent" type="TextureRect" parent="Control/Pipes/Pipe_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -46.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 47)
+texture = ExtResource("7_1d4ie")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Tap_2" type="TextureRect" parent="Control/Pipes/Pipe_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -75.0
+offset_right = -49.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(88, 41)
+texture = ExtResource("8_7lrgg")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Pipe_3" type="TextureRect" parent="Control/Pipes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = 1051.0
+offset_right = -665.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_er2pm")
+expand_mode = 1
+flip_h = true
+
+[node name="Pipe_Bent" type="TextureRect" parent="Control/Pipes/Pipe_3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -46.0
+offset_right = 27.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 47)
+texture = ExtResource("7_1d4ie")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true
+
+[node name="Tap_2" type="TextureRect" parent="Control/Pipes/Pipe_3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = -76.0
+offset_right = 115.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(88, 41)
+texture = ExtResource("8_7lrgg")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true
+
+[node name="Pipe_4" type="TextureRect" parent="Control/Pipes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 375.0
+offset_top = 428.0
+offset_right = -323.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_er2pm")
+expand_mode = 1
+flip_h = true
+
+[node name="Pipe_Bent" type="TextureRect" parent="Control/Pipes/Pipe_4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -46.0
+offset_right = 27.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 47)
+texture = ExtResource("7_1d4ie")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true
+
+[node name="Tap_2" type="TextureRect" parent="Control/Pipes/Pipe_4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = -76.0
+offset_right = 115.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(88, 41)
+texture = ExtResource("8_7lrgg")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true

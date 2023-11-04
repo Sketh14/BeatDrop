@@ -30,6 +30,9 @@ public:
 	void SetActivateSpawner(bool status);
 	bool GetActivateSpawner();
 
+	void SetScene2Selected(bool status);
+	bool GetScene2Selected();
+
 	void SetDropSpawnPos1(PackedVector2Array dropsSpawnPos);
 	PackedVector2Array GetDropSpawnPos1();
 
@@ -42,7 +45,7 @@ private:
 	Node2D* dropsContainer;
 	Node2D* drops[10];
 
-	bool sceneReady, initialSpawnsDone, activateSpawner;
+	bool sceneReady, initialSpawnsDone, activateSpawner, scene2Selected;
 
 	Vector2 spawnPos;
 	bool dropsEnableStatus[10];

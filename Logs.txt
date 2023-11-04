@@ -95,6 +95,26 @@
 => [Do] Make Credits
 
 --------------------------------------------------------------------------------------
+									24 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> Added Credits
+=> Added to itch.io
+=> 
+
+--------------------------------------------------------------------------------------
+									28 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> [Done for now] Move dials
+=> [Done for now] Levers would move but only after some alloted time which is to be long (7-8 sec)
+
+--------------------------------------------------------------------------------------
+									29 OCTOBER 2023
+--------------------------------------------------------------------------------------
+=> [Done for now] Added 2nd bg that can be selected
+=> Player can now select scene/bg accordingly at the main menu
+=> [Fixed] Bgm was not looped 
+
+--------------------------------------------------------------------------------------
 									ASSETS
 --------------------------------------------------------------------------------------
 => https://cartooncoffee.itch.io/sunnycloud
@@ -105,3 +125,6 @@
 => https://www.freepik.com/free-vector/flat-design-metallic-pipeline-set_5461591.htm#query=pipe%20cartoon&position=27&from_view=search&track=ais
 => https://www.freepik.com/free-vector/cartoon-element-animation-frames_13862945.htm#query=steam%20cartoon&position=3&from_view=keyword&track=ais
 => https://ggbot.itch.io/bad-comic-font
+
+
+If extensio too long error occurs, then chnage the NDK location

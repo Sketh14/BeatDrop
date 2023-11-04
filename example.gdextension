@@ -7,3 +7,4 @@ compatibility_minimum = 4.1
 
 windows.debug.x86_64 = "res://libtest.windows.template_debug.x86_64.dll"
 android.debug.arm64 = "res://libtest.android.template_debug.arm64.so"
+android.release.arm64 = "res://libtest.android.template_release.arm64.so"

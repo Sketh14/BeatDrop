@@ -22,7 +22,7 @@ DropsSpawner::DropsSpawner()
 		dropsSpawnPos.push_back(Vector2(0.0, 0.0));
 
 	spawnTimes = NULL, consecutive = NULL;
-	sceneReady = activateSpawner = false;
+	sceneReady = activateSpawner = scene2Selected = false;
 }
 
 DropsSpawner::~DropsSpawner() 
@@ -177,7 +177,11 @@ void DropsSpawner::SpawnDrops()
 	int randPosX = (UtilityFunctions::randf() * 620) - 310;
 	Vector2 pos = Vector2(randPosX, 0);
 #else
-	int randSpawnArrIndex = UtilityFunctions::randf() * 4;
+	int randSpawnArrIndex;
+	if (scene2Selected)
+		randSpawnArrIndex = (UtilityFunctions::randf() * 4) + 4;	//Starts from index 4
+	else
+		randSpawnArrIndex = UtilityFunctions::randf() * 4;
 	Vector2 pos = dropsSpawnPos[randSpawnArrIndex];
 #endif // RANDOM_POS
 
@@ -285,6 +289,9 @@ void DropsSpawner::SetDropSpawnPos1(PackedVector2Array _dropsSpawnPos) { dropsSp
 bool DropsSpawner::GetActivateSpawner() { return activateSpawner; }
 void DropsSpawner::SetActivateSpawner(bool status) { activateSpawner = status; }
 
+bool DropsSpawner::GetScene2Selected() { return scene2Selected; }
+void DropsSpawner::SetScene2Selected(bool status) { scene2Selected = status; }
+
 //RigidBody2D Test::GetPlayerRB() { return playerRb; }
 //void Test::SetPlayerRB(RigidBody2D rigidBody) { get_node<RigidBody2D>("PlayerRB_2D"); }			//RigidBody2D rigidBody
 #pragma endregion
@@ -306,6 +313,10 @@ void DropsSpawner::_bind_methods()
 	ClassDB::bind_method(D_METHOD("SetActivateSpawner", "status"), &DropsSpawner::SetActivateSpawner);
 	ClassDB::bind_method(D_METHOD("GetActivateSpawner"), &DropsSpawner::GetActivateSpawner);
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "activateSpawner"), "SetActivateSpawner", "GetActivateSpawner");
+
+	ClassDB::bind_method(D_METHOD("SetScene2Selected", "status"), &DropsSpawner::SetScene2Selected);
+	ClassDB::bind_method(D_METHOD("GetScene2Selected"), &DropsSpawner::GetScene2Selected);
+	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "scene2Selected"), "SetScene2Selected", "GetScene2Selected");
 
 	ClassDB::bind_method(D_METHOD("SpawnDrops"), &DropsSpawner::SpawnDrops);
 
